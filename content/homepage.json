@@ -1,0 +1,60 @@
+{
+  "hero": {
+    "subtitle": "Struggling to find truly\nAuthentic Japanese dining?",
+    "tagline": "Japan, served at the table.",
+    "description": "Premium seafood, wagyu, and artisanal ingredients are flown from Japan and prepared with precision and respect for tradition, creating an unmistakably Japanese dining experience.",
+    "buttonText": "Book a Table",
+    "buttonLink": "https://m.me/DaimasuMakati",
+    "japaneseText1": "本物の日本の味。",
+    "japaneseText2": "フィリピンで味わう、",
+    "japaneseText3": "日本の味。",
+    "japaneseText4": "食卓に広がる、"
+  },
+  "tatlerAwards": {
+    "awardedBy": "Awarded by",
+    "country": "Philippines",
+    "year": "2024",
+    "title": "A Masterclass in Japanese Gastronomy",
+    "description": "Luxury and comfort meet in every detail, creating a refined and immersive dining experience.",
+    "japaneseText": "日本料理の極み"
+  },
+  "artOfIngredient": {
+    "title": "ART OF\nINGREDIENT",
+    "description": "Our seasonal selections change with nature's rhythm. Each dish showcases ingredients at their peak, crafted with the essence of Japan's bounty.",
+    "japaneseText": "季節の恵み"
+  },
+  "sakeSection": {
+    "title": "THE STORY\nSAKE PERFORMS",
+    "description": "Every bottle in our collection carries the essence of its brewery, the season, and the craft. Carefully selected, each sake harmonizes with your meal, creating a flowing, unforgettable experience from the first sip to the last",
+    "buttonText": "Discover Our Sakes",
+    "buttonLink": "/our-menu",
+    "japaneseText": "酒が奏でる物語"
+  },
+  "quietExperience": {
+    "title": "A QUIET, INTIMATE EXPERIENCE",
+    "description": "Step into a serene space where every detail is designed for calm and connection. Here, the seasons unfold gently on each plate, and every moment is meant to be savored in quiet elegance.",
+    "buttonText": "Explore Our Rooms",
+    "buttonLink": "/our-rooms",
+    "japaneseText1": "静けさの中で、",
+    "japaneseText2": "季節を味わう"
+  },
+  "membership": {
+    "title": "More Than a Card.\nIt's an Invitation.",
+    "description": "A symbol of access to Daimasu's most sought-after experiences—priority reservations, exclusive privileges, and elevated dining moments reserved for members.",
+    "buttonText": "Become a member",
+    "buttonLink": "#"
+  },
+  "grabFood": {
+    "title": "We're now on",
+    "buttonText": "Order Now",
+    "buttonLink": "https://r.grab.com/g/6-20260123_182251_91230EF135F3447384D50AE00F339011_MEXMPS-2-C7VDEBXXTJD1G2"
+  },
+  "location": {
+    "title": "Our Location",
+    "address": "Ground Floor Allegro Center,\nChino Roces Ave, Brgy Magallanes 1232",
+    "contactNo": "0917 109 6032",
+    "email": "daimasumakati@gmail.com",
+    "buttonText": "Reserve a Table",
+    "buttonLink": "https://m.me/DaimasuMakati"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "hero": {
+    "title": "Daimasu\nPremium Reserve",
+    "subtitle": "Make Daimasu Your Second Dining Table",
+    "description": "Daimasu Premium Reserve offers exclusive access and personalized service. Enjoy priority reservations and seasonal, curated menus. Every visit becomes an intimate celebration of Japanese culinary artistry.",
+    "registerButtonText": "Register Now",
+    "registerButtonLink": "https://m.me/daimasujapaneserestaurant",
+    "benefitsButtonText": "View Benefits",
+    "benefitsButtonLink": "#benefits",
+    "japaneseText1": "あなたの第二の食卓",
+    "japaneseText2": "会員だけの特別な時間、",
+    "japaneseText3": "旬の料理とともに。",
+    "japaneseText4": "日本料理の静かな旅。",
+    "japaneseText5": "二度、記憶に残る。"
+  },
+  "programConcept": {
+    "title": "Daimasu as Your\nSecond Dining Room",
+    "description": "A membership-based premium deposit program designed for Daimasu, which values the spirit of \"Omotenashi\" (Japanese hospitality) above all else, to forge strong bonds with true loyal customers and establish a stable revenue base."
+  }
+}

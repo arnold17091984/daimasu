@@ -1,0 +1,41 @@
+{
+  "hero": {
+    "title": "A Quiet Journey,\nA Table Beyond Time",
+    "subtitle": "Drawn Close by Care, Immersed in Taste",
+    "description": "Each room offers a sanctuary from the outside world, where comfort is felt in every detail. Soft lighting, thoughtful design, and serene surroundings create a space to relax, savor, and connect. Here, time slows, allowing each dish and every conversation to be truly enjoyed.",
+    "japaneseText1": "心に寄り添い、味わいに浸る",
+    "japaneseText2": "時を超えた膳",
+    "japaneseText3": "静かな旅、"
+  },
+  "layoutFlow": {
+    "title": "Layout & Flow"
+  },
+  "roomDetails": {
+    "title": "Room Details",
+    "description": "Join us at Daimasu, and discover why every meal here is more than food—it's a celebration of culture, care, and culinary artistry."
+  },
+  "vipRooms": {
+    "title": "VIP Rooms",
+    "capacity": "6-8 people/room",
+    "description": "Experience elevated privacy and comfort in our VIP Room, designed to accommodate up to 8 guests. With refined interiors and a serene ambiance, it's the ideal setting for intimate celebrations, business meals, or special occasions. Let our attentive team ensure every detail is handled with care, creating a seamless and memorable dining experience.",
+    "tagline1": "洗練と静寂に包まれた",
+    "tagline2": "親密な隠れ家",
+    "buttonText": "Book a Table"
+  },
+  "tatamiRooms": {
+    "title": "Tatami Rooms",
+    "capacity": "4-8 people/room",
+    "description": "Immerse yourself in the elegance of tradition within our Tatami Room, a sanctuary of understated luxury. Appointed with the handcrafted woven straw flooring and refined Japanese decor, this exclusive space offers a serene escape for those seeking a truly authentic and elevated dining experience. Ideal for private gatherings, it embodies the essence of omotenashi—Japan's highest form of hospitality—with grace and quiet sophistication.",
+    "tagline1": "畳の間、時が静かに",
+    "tagline2": "流れる特別な空間",
+    "buttonText": "Book a Room"
+  },
+  "sushiCounter": {
+    "title": "Sushi Counter",
+    "capacity": "11 people",
+    "description": "Experience the artistry of Japanese cuisine at our exclusive Sushi Counter, thoughtfully designed to seat up to 13 guests. Witness master chefs craft each piece with precision and elegance, delivering an immersive dining experience that honors tradition and seasonality. Ideal for private gatherings this setting reflects the spirit of omakase and omotenashi—where every detail is curated with grace and hospitality.",
+    "tagline1": "寿司は芸術、",
+    "tagline2": "オマカセは体験",
+    "buttonText": "Book a Seat"
+  }
+}

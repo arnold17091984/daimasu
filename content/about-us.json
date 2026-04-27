@@ -1,0 +1,33 @@
+{
+  "hero": {
+    "title": "The Art of Omotenashi",
+    "subtitle": "Refined Cuisine, Attentive Service, Thoughtfully Tailored for You",
+    "description": "Guided by the Japanese spirit of omotenashi, we strive to understand our guests and deliver heartfelt cuisine and service that leave them genuinely satisfied.",
+    "buttonText": "Book a table",
+    "buttonLink": "https://m.me/daimasujapaneserestaurant",
+    "japaneseText1": "細やかな心配り、",
+    "japaneseText2": "上質なひととき",
+    "japaneseText3": "細部まで行き届く心配り",
+    "japaneseText4": "上質なおもてなし"
+  },
+  "aboutUsTitle": "About Us",
+  "atDaimasu": {
+    "title": "At Daimasu, we bring the heart of Japan to your table.",
+    "description": "Our name, meaning \"Great Celebration,\" reflects our passion for crafting unforgettable dining experiences rooted in authentic Japanese culinary tradition. Whether you're a seasoned sushi lover, a ramen enthusiast, or a curious first-time guest, Daimasu is your home for genuine, handcrafted Japanese cuisine."
+  },
+  "craftedWithPrecision": {
+    "title": "Crafted with Precision",
+    "description": "Every dish at Daimasu is thoughtfully prepared using the freshest ingredients, traditional techniques, and a deep respect for flavor. From delicately sliced sashimi and perfectly grilled yakitori to comforting bowls of ramen and artfully arranged bento sets, our menu celebrates the diversity and elegance of Japanese food."
+  },
+  "moreThanAMeal": {
+    "title": "More Than a Meal",
+    "description": "At Daimasu, we believe in omotenashi —the Japanese spirit of heartfelt service. Whether you're here for a quiet dinner, a special celebration, or a quick lunch escape, we strive to make each visit feel personal and memorable.",
+    "japaneseText1": "静かな夕食や特別な祝いごと、気軽なランチでも、",
+    "japaneseText2": "一人ひとりに寄り添い、心に残るひとときを。",
+    "japaneseText3": "大松では、日本の心「おもてなし」を大切に。",
+    "japaneseText4": "食を超えて"
+  },
+  "meetOurStaff": {
+    "title": "Meet Our Staff"
+  }
+}
