@@ -3,12 +3,12 @@
 import {useState, useRef} from 'react';
 import Image from 'next/image';
 import {FaUsers} from 'react-icons/fa6';
-import ExternalLink from '@/components/ExternalLink';
 import {buttonVariants} from '@/components/ui/button';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Link from 'next/link';
+import {useLocale, useTranslations} from 'next-intl';
 import {cn} from '@/lib/utils';
 
 type OurRoomsContent = {
@@ -61,7 +61,6 @@ interface RoomCardProps {
   tagline1: string;
   tagline2: string;
   buttonText: string;
-  reverse?: boolean;
 }
 
 // VIP Room Card with gallery layout (main image + thumbnails)
@@ -73,7 +72,7 @@ function VIPRoomCard({
   tagline1,
   tagline2,
   buttonText
-}: Omit<RoomCardProps, 'reverse'>) {
+}: RoomCardProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const sliderRef = useRef<Slider>(null);
 
@@ -106,6 +105,8 @@ function VIPRoomCard({
                     src={img}
                     alt={`${title} ${idx + 1}`}
                     fill
+                    sizes="(min-width: 1280px) 450px, (min-width: 1024px) 400px, 100vw"
+                    quality={75}
                     className="object-cover"
                   />
                 </div>
@@ -130,6 +131,8 @@ function VIPRoomCard({
                     src={img}
                     alt={`${title} thumbnail ${idx + 2}`}
                     fill
+                    sizes="150px"
+                    quality={70}
                     className="object-cover"
                   />
                 </button>
@@ -184,226 +187,153 @@ function VIPRoomCard({
   );
 }
 
-// Standard Room Card (for other rooms)
-function RoomCard({
-  title,
-  capacity,
-  description,
-  images,
-  tagline1,
-  tagline2,
-  buttonText,
-  reverse = false
-}: RoomCardProps) {
-  return (
-    <div className="relative w-full rounded-[21px] overflow-hidden shadow-[0px_4px_4px_0px_rgba(0,0,0,0.4)]">
-      {/* Background Image */}
-      <div className="relative w-full aspect-[2.3/1] min-h-[400px] md:min-h-[500px]">
-        <Image src={images[0]} alt={title} fill className="object-cover" />
-        {/* Gradient Overlay */}
-        <div
-          className={`absolute inset-0 pointer-events-none ${
-            reverse
-              ? 'bg-gradient-to-l from-black/90 via-black/60 to-transparent'
-              : 'bg-gradient-to-r from-black/90 via-black/60 to-transparent'
-          }`}
-        />
-
-        {/* Content */}
-        <div
-          className={`absolute inset-0 flex ${
-            reverse ? 'flex-row-reverse' : 'flex-row'
-          } items-center pointer-events-none`}
-        >
-          {/* Text Content */}
-          <div
-            className={`flex-1 p-6 md:p-10 lg:p-12 ${
-              reverse ? 'text-left' : 'text-right'
-            }`}
-          >
-            {/* Title */}
-            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold font-poppins text-white mb-2">
-              {title}
-            </h3>
-
-            {/* Capacity */}
-            <div
-              className={`flex items-center gap-2 text-white mb-4 ${
-                reverse ? 'justify-start' : 'justify-end'
-              }`}
-            >
-              <FaUsers className="w-5 h-5 md:w-6 md:h-6" />
-              <span className="text-sm md:text-base font-poppins">
-                {capacity}
-              </span>
-            </div>
-
-            {/* Description */}
-            <p
-              className={`text-sm md:text-base font-poppins text-white/90 leading-relaxed max-w-md ${
-                reverse ? 'mr-auto' : 'ml-auto'
-              }`}
-            >
-              {description}
-            </p>
-
-            {/* Book Button */}
-            <div
-              className={`mt-6 ${reverse ? 'text-left' : 'text-right'} pointer-events-auto`}
-            >
-              <ExternalLink href="https://m.me/daimasujapaneserestaurant">
-                <button className="px-8 py-3 bg-transparent border-2 border-white text-white font-poppins font-bold text-lg md:text-xl rounded-[9px] hover:bg-white hover:text-black transition-all shadow-[0px_4px_9px_0px_rgba(0,0,0,1)]">
-                  {buttonText}
-                </button>
-              </ExternalLink>
-            </div>
-          </div>
-
-          {/* Japanese Tagline (Vertical) */}
-          <div
-            className={`hidden md:flex flex-col items-center justify-center px-8 lg:px-12 ${
-              reverse ? 'order-first' : ''
-            }`}
-          >
-            <div className="writing-vertical-rl text-white font-zen-old-mincho text-2xl lg:text-3xl tracking-wider">
-              <p>{tagline1}</p>
-              <p className="mt-2">{tagline2}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 type Props = {
   content?: OurRoomsContent | null;
 };
 
 export default function OurRooms({content}: Props) {
+  const t = useTranslations();
+  const useCms = useLocale() === 'en';
+
   // Hero section defaults
-  const heroTitle = content?.hero?.title || "A Quiet Journey,\nA Table Beyond Time";
-  const heroSubtitle = content?.hero?.subtitle || "Drawn Close by Care, Immersed in Taste";
-  const heroDescription = content?.hero?.description || "Each room offers a sanctuary from the outside world, where comfort is felt in every detail. Soft lighting, thoughtful design, and serene surroundings create a space to relax, savor, and connect. Here, time slows, allowing each dish and every conversation to be truly enjoyed.";
-  const heroJapanese1 = content?.hero?.japaneseText1 || "心に寄り添い、味わいに浸る";
-  const heroJapanese2 = content?.hero?.japaneseText2 || "時を超えた膳";
-  const heroJapanese3 = content?.hero?.japaneseText3 || "静かな旅、";
+  const heroTitle = (useCms && content?.hero?.title) || t('a_quiet_journey');
+  const heroSubtitle =
+    (useCms && content?.hero?.subtitle) || t('drawn_close_by_care');
+  const heroDescription =
+    (useCms && content?.hero?.description) || t('rooms_hero_description');
+  const heroJapanese1 =
+    content?.hero?.japaneseText1 || '心に寄り添い、味わいに浸る';
+  const heroJapanese2 = content?.hero?.japaneseText2 || '時を超えた膳';
+  const heroJapanese3 = content?.hero?.japaneseText3 || '静かな旅、';
 
   // Layout & Flow defaults
-  const layoutFlowTitle = content?.layoutFlow?.title || "Layout & Flow";
+  const layoutFlowTitle =
+    (useCms && content?.layoutFlow?.title) || t('layout_&_flow');
 
   // Room Details defaults
-  const roomDetailsTitle = content?.roomDetails?.title || "Room Details";
-  const roomDetailsDescription = content?.roomDetails?.description || "Join us at Daimasu, and discover why every meal here is more than food—it's a celebration of culture, care, and culinary artistry.";
+  const roomDetailsTitle =
+    (useCms && content?.roomDetails?.title) || t('room_details');
+  const roomDetailsDescription =
+    (useCms && content?.roomDetails?.description) || t('join_us_at_daimasu');
 
   // Split hero title into lines
   const heroTitleLines = heroTitle.split('\n');
 
   const rooms = [
     {
-      title: content?.vipRooms?.title || "VIP Rooms",
-      capacity: content?.vipRooms?.capacity || "6-8 people/room",
-      description: content?.vipRooms?.description || "Experience elevated privacy and comfort in our VIP Room, designed to accommodate up to 8 guests. With refined interiors and a serene ambiance, it's the ideal setting for intimate celebrations, business meals, or special occasions. Let our attentive team ensure every detail is handled with care, creating a seamless and memorable dining experience.",
+      title: (useCms && content?.vipRooms?.title) || t('vip_rooms'),
+      capacity:
+        (useCms && content?.vipRooms?.capacity) ||
+        `6-8 ${t('people')}/${t('room')}`,
+      description:
+        (useCms && content?.vipRooms?.description) ||
+        t('experience_elevated_privacy_and'),
       images: [
         '/ourrooms/viprooms-1.png',
         '/ourrooms/viprooms-2.png',
         '/ourrooms/viprooms-3.png',
         '/ourrooms/viprooms-4.png'
       ],
-      tagline1: content?.vipRooms?.tagline1 || "洗練と静寂に包まれた",
-      tagline2: content?.vipRooms?.tagline2 || "親密な隠れ家",
-      buttonText: content?.vipRooms?.buttonText || "Book a Table"
+      tagline1: content?.vipRooms?.tagline1 || t('vip_rooms_tagline_1'),
+      tagline2: content?.vipRooms?.tagline2 || t('vip_rooms_tagline_2'),
+      buttonText: (useCms && content?.vipRooms?.buttonText) || t('book_a_table')
     },
     {
-      title: content?.tatamiRooms?.title || "Tatami Rooms",
-      capacity: content?.tatamiRooms?.capacity || "4-8 people/room",
-      description: content?.tatamiRooms?.description || "Immerse yourself in the elegance of tradition within our Tatami Room, a sanctuary of understated luxury. Appointed with the handcrafted woven straw flooring and refined Japanese decor, this exclusive space offers a serene escape for those seeking a truly authentic and elevated dining experience. Ideal for private gatherings, it embodies the essence of omotenashi—Japan's highest form of hospitality—with grace and quiet sophistication.",
+      title: (useCms && content?.tatamiRooms?.title) || t('tatami_rooms'),
+      capacity:
+        (useCms && content?.tatamiRooms?.capacity) ||
+        `4-8 ${t('people')}/${t('room')}`,
+      description:
+        (useCms && content?.tatamiRooms?.description) ||
+        t('immerse_yourself_in_the'),
       images: [
         '/ourrooms/tatamirooms-1.png',
         '/ourrooms/tatamirooms-2.png',
         '/ourrooms/tatamirooms-3.png',
         '/ourrooms/tatamirooms-4.png'
       ],
-      tagline1: content?.tatamiRooms?.tagline1 || "畳の間、時が静かに",
-      tagline2: content?.tatamiRooms?.tagline2 || "流れる特別な空間",
-      buttonText: content?.tatamiRooms?.buttonText || "Book a Room"
+      tagline1: content?.tatamiRooms?.tagline1 || t('tatami_rooms_tagline_1'),
+      tagline2: content?.tatamiRooms?.tagline2 || t('tatami_rooms_tagline_2'),
+      buttonText:
+        (useCms && content?.tatamiRooms?.buttonText) || t('book_a_room')
     },
     {
-      title: content?.sushiCounter?.title || "Sushi Counter",
-      capacity: content?.sushiCounter?.capacity || "11 people",
-      description: content?.sushiCounter?.description || "Experience the artistry of Japanese cuisine at our exclusive Sushi Counter, thoughtfully designed to seat up to 13 guests. Witness master chefs craft each piece with precision and elegance, delivering an immersive dining experience that honors tradition and seasonality. Ideal for private gatherings this setting reflects the spirit of omakase and omotenashi—where every detail is curated with grace and hospitality.",
+      title: (useCms && content?.sushiCounter?.title) || t('sushi_counter'),
+      capacity:
+        (useCms && content?.sushiCounter?.capacity) || `11 ${t('people')}`,
+      description:
+        (useCms && content?.sushiCounter?.description) ||
+        t('experience_the_artistry_of'),
       images: [
         '/ourrooms/sushicounter-1.png',
         '/ourrooms/sushicounter-2.png',
         '/ourrooms/sushicounter-3.png',
         '/ourrooms/sushicounter-4.png'
       ],
-      tagline1: content?.sushiCounter?.tagline1 || "寿司は芸術、",
-      tagline2: content?.sushiCounter?.tagline2 || "オマカセは体験",
-      buttonText: content?.sushiCounter?.buttonText || "Book a Seat"
+      tagline1: content?.sushiCounter?.tagline1 || t('sushi_counter_tagline_1'),
+      tagline2: content?.sushiCounter?.tagline2 || t('sushi_counter_tagline_2'),
+      buttonText:
+        (useCms && content?.sushiCounter?.buttonText) || t('book_a_seat')
     }
   ];
 
   return (
     <section className="bg-[#252A2E] text-white w-full">
       {/* Hero Section */}
-      <div className="relative w-full min-h-[600px] md:min-h-[800px] lg:min-h-[907px]">
+      <div className="relative w-full min-h-[560px] md:min-h-[760px] lg:min-h-[860px]">
         {/* Background Image */}
         <Image
           src="/ourrooms/rooms-hero.png"
-          alt="Rooms Hero"
+          alt=""
           fill
           className="object-cover"
           priority
+          sizes="100vw"
+          quality={75}
         />
-        {/* Gradient Overlay - transparent on left (47%), black on right (89%) */}
+        {/* Gradient Overlay — full black on mobile, fading right on desktop */}
         <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(90deg, rgba(0, 0, 0, 0) 47%, rgba(0, 0, 0, 1) 89%)'
-          }}
+          aria-hidden="true"
+          className="absolute inset-0 bg-black/55 md:bg-transparent md:[background:linear-gradient(90deg,rgba(0,0,0,0)_47%,rgba(0,0,0,0.95)_89%)]"
         />
 
-        {/* Content - positioned on right side */}
-        <div className="absolute inset-0 flex items-center justify-end">
-          <div className="w-full max-w-[1036px] px-4 sm:px-8 md:pr-16 lg:pr-24">
-            <div className="flex flex-row items-start gap-8 md:gap-12 lg:gap-16">
-              {/* English Content - LEFT side of text block */}
+        {/* Content */}
+        <div className="absolute inset-0 flex items-center md:justify-end">
+          <div className="w-full max-w-[1036px] mx-auto md:mx-0 px-6 md:pr-16 lg:pr-24 md:ml-auto">
+            <div className="flex flex-col md:flex-row md:items-start gap-8 md:gap-12 lg:gap-16">
               <div className="max-w-[521px] text-left">
-                <h1 className="text-3xl sm:text-4xl md:text-[48px] font-bold font-playfair text-white md:leading-[3rem] tracking-[0.02em]">
+                <h1 className="text-3xl sm:text-4xl md:text-[48px] font-bold font-playfair text-white md:leading-[3rem] tracking-[0.02em] break-keep-all">
                   {heroTitleLines.map((line, index) => (
-                    <span key={index}>
+                    <span key={`${line}-${index}`}>
                       {line}
                       {index < heroTitleLines.length - 1 && <br />}
                     </span>
                   ))}
                 </h1>
-                <p className="text-lg sm:text-xl md:text-[24px] font-poppins font-medium text-white mt-4 leading-[1.22] tracking-[0.01em]">
+                <p className="text-lg sm:text-xl md:text-[24px] font-poppins font-medium text-white mt-4 leading-[1.4] tracking-[0.01em]">
                   {heroSubtitle}
                 </p>
                 <div
-                  className="my-6 mx-auto"
-                  style={{
-                    width: '101px',
-                    height: '6px',
-                    backgroundColor: '#FF4040'
-                  }}
+                  className="my-6 mx-0 w-[80px] md:w-[101px] h-[3px] md:h-[6px] bg-[#FF4040]"
+                  aria-hidden="true"
                 />
-                <p className="text-sm sm:text-base md:text-[16px] font-poppins font-normal text-white leading-[1.44] tracking-[0.02em] max-w-[497px]">
+                <p className="text-sm sm:text-base md:text-[16px] font-poppins font-normal text-white/90 leading-[1.6] tracking-[0.02em] max-w-[497px] break-keep-all">
                   {heroDescription}
                 </p>
               </div>
 
-              {/* Japanese Text (Vertical) - RIGHT side of text block */}
-              <div className="hidden md:flex flex-row gap-2 lg:gap-4">
-                <div className="writing-vertical-rl text-white font-zen-old-mincho text-[32px] leading-[1.1] tracking-[0.01em]">
+              {/* Japanese Vertical Accent — desktop only */}
+              <div
+                aria-hidden="true"
+                className="hidden md:flex flex-row gap-2 lg:gap-4"
+              >
+                <div className="writing-vertical-rl text-white font-zen-old-mincho text-[28px] lg:text-[32px] leading-[1.1] tracking-[0.01em]">
                   {heroJapanese1}
                 </div>
-                <div className="writing-vertical-rl text-white font-zen-old-mincho text-[64px] leading-[1.1] tracking-[0.01em]">
+                <div className="writing-vertical-rl text-white font-zen-old-mincho text-[48px] lg:text-[64px] leading-[1.1] tracking-[0.01em]">
                   {heroJapanese2}
                 </div>
-                <div className="writing-vertical-rl text-white font-zen-old-mincho text-[64px] leading-[1.1] tracking-[0.01em]">
+                <div className="writing-vertical-rl text-white font-zen-old-mincho text-[48px] lg:text-[64px] leading-[1.1] tracking-[0.01em]">
                   {heroJapanese3}
                 </div>
               </div>
@@ -420,6 +350,8 @@ export default function OurRooms({content}: Props) {
             src="/homepage/tatler-texture-2.png"
             alt=""
             fill
+            sizes="100vw"
+            quality={50}
             className="object-cover mix-blend-multiply opacity-30"
           />
         </div>
@@ -448,6 +380,8 @@ export default function OurRooms({content}: Props) {
                   src="/ourrooms/rooms-layout.png"
                   alt="Floor Plan View 1"
                   fill
+                  sizes="(min-width: 768px) 180px, 30vw"
+                  quality={70}
                   className="object-cover rounded-md"
                 />
               </div>
@@ -456,6 +390,8 @@ export default function OurRooms({content}: Props) {
                   src="/ourrooms/layout-thumb-2.png"
                   alt="Floor Plan View 2"
                   fill
+                  sizes="(min-width: 768px) 220px, 35vw"
+                  quality={70}
                   className="object-cover rounded-md"
                 />
               </div>
@@ -464,6 +400,8 @@ export default function OurRooms({content}: Props) {
                   src="/ourrooms/layout-thumb-3.png"
                   alt="Floor Plan View 3"
                   fill
+                  sizes="(min-width: 768px) 180px, 30vw"
+                  quality={70}
                   className="object-cover rounded-md"
                 />
               </div>
@@ -480,32 +418,18 @@ export default function OurRooms({content}: Props) {
 
           {/* Room Cards */}
           <div className="space-y-10 md:space-y-16">
-            {rooms.map((room, index) =>
-              index === 0 || index === 1 || index === 2 ? (
-                <VIPRoomCard
-                  key={index}
-                  title={room.title}
-                  capacity={room.capacity}
-                  description={room.description}
-                  images={room.images}
-                  tagline1={room.tagline1}
-                  tagline2={room.tagline2}
-                  buttonText={room.buttonText}
-                />
-              ) : (
-                <RoomCard
-                  key={index}
-                  title={room.title}
-                  capacity={room.capacity}
-                  description={room.description}
-                  images={room.images}
-                  tagline1={room.tagline1}
-                  tagline2={room.tagline2}
-                  buttonText={room.buttonText}
-                  reverse={index % 2 === 1}
-                />
-              )
-            )}
+            {rooms.map((room) => (
+              <VIPRoomCard
+                key={room.title}
+                title={room.title}
+                capacity={room.capacity}
+                description={room.description}
+                images={room.images}
+                tagline1={room.tagline1}
+                tagline2={room.tagline2}
+                buttonText={room.buttonText}
+              />
+            ))}
           </div>
         </div>
       </div>

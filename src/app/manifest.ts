@@ -3,13 +3,24 @@ import {getTranslations} from 'next-intl/server';
 import {routing} from '@/i18n/routing';
 
 export default async function manifest(): Promise<MetadataRoute.Manifest> {
-  const t = await getTranslations({
-    locale: routing.defaultLocale
-  });
+  const t = await getTranslations({locale: routing.defaultLocale});
 
   return {
-    name: 'Daimasu',
+    name: t('seo_site_name'),
+    short_name: 'Daimasu',
+    description: t('seo_default_description'),
     start_url: '/',
-    theme_color: '#101E33'
+    display: 'standalone',
+    background_color: '#101E33',
+    theme_color: '#101E33',
+    orientation: 'portrait',
+    icons: [
+      {
+        src: '/homepage/daimasu-logo.svg',
+        sizes: 'any',
+        type: 'image/svg+xml',
+        purpose: 'any'
+      }
+    ]
   };
 }

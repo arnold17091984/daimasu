@@ -1,8 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import Slider from 'react-slick';
+import {useLocale, useTranslations} from 'next-intl';
 import {cn} from '@/lib/utils';
 import {buttonVariants} from '@/components/ui/button';
 
@@ -55,36 +55,61 @@ const staffMembers = [
 ];
 
 export default function AboutUs({content}: Props) {
+  const t = useTranslations();
+  const useCms = useLocale() === 'en';
+
   // Hero section defaults
-  const heroTitle = content?.hero?.title || 'The Art of Omotenashi';
-  const heroSubtitle = content?.hero?.subtitle || 'Refined Cuisine, Attentive Service, Thoughtfully Tailored for You';
-  const heroDescription = content?.hero?.description || 'Guided by the Japanese spirit of omotenashi, we strive to understand our guests and deliver heartfelt cuisine and service that leave them genuinely satisfied.';
-  const heroButtonText = content?.hero?.buttonText || 'Book a table';
-  const heroButtonLink = content?.hero?.buttonLink || 'https://m.me/daimasujapaneserestaurant';
+  const heroTitle = (useCms && content?.hero?.title) || t('about_hero_title');
+  const heroSubtitle =
+    (useCms && content?.hero?.subtitle) || t('about_hero_subtitle');
+  const heroDescription =
+    (useCms && content?.hero?.description) || t('about_hero_description');
+  const heroButtonText =
+    (useCms && content?.hero?.buttonText) || t('book_a_table');
+  const heroButtonLink =
+    content?.hero?.buttonLink || 'https://m.me/daimasujapaneserestaurant';
   const heroJapanese1 = content?.hero?.japaneseText1 || '細やかな心配り、';
   const heroJapanese2 = content?.hero?.japaneseText2 || '上質なひととき';
-  const heroJapanese3 = content?.hero?.japaneseText3 || '細部まで行き届く心配り';
+  const heroJapanese3 =
+    content?.hero?.japaneseText3 || '細部まで行き届く心配り';
   const heroJapanese4 = content?.hero?.japaneseText4 || '上質なおもてなし';
 
   // About Us section defaults
-  const aboutUsTitle = content?.aboutUsTitle || 'About Us';
-  const atDaimasuTitle = content?.atDaimasu?.title || 'At Daimasu, we bring the heart of Japan to your table.';
-  const atDaimasuDescription = content?.atDaimasu?.description || 'Our name, meaning "Great Celebration," reflects our passion for crafting unforgettable dining experiences rooted in authentic Japanese culinary tradition. Whether you\'re a seasoned sushi lover, a ramen enthusiast, or a curious first-time guest, Daimasu is your home for genuine, handcrafted Japanese cuisine.';
+  const aboutUsTitle = (useCms && content?.aboutUsTitle) || t('about_us_title');
+  const atDaimasuTitle =
+    (useCms && content?.atDaimasu?.title) || t('at_daimasu_we_bring');
+  const atDaimasuDescription =
+    (useCms && content?.atDaimasu?.description) || t('our_name_meaning_great');
 
   // Crafted with Precision defaults
-  const craftedTitle = content?.craftedWithPrecision?.title || 'Crafted with Precision';
-  const craftedDescription = content?.craftedWithPrecision?.description || 'Every dish at Daimasu is thoughtfully prepared using the freshest ingredients, traditional techniques, and a deep respect for flavor. From delicately sliced sashimi and perfectly grilled yakitori to comforting bowls of ramen and artfully arranged bento sets, our menu celebrates the diversity and elegance of Japanese food.';
+  const craftedTitle =
+    (useCms && content?.craftedWithPrecision?.title) ||
+    t('crafted_with_precision');
+  const craftedDescription =
+    (useCms && content?.craftedWithPrecision?.description) ||
+    t('every_dish_at_daimasu');
 
   // More Than a Meal defaults
-  const moreThanMealTitle = content?.moreThanAMeal?.title || 'More Than a Meal';
-  const moreThanMealDescription = content?.moreThanAMeal?.description || 'At Daimasu, we believe in omotenashi —the Japanese spirit of heartfelt service. Whether you\'re here for a quiet dinner, a special celebration, or a quick lunch escape, we strive to make each visit feel personal and memorable.';
-  const moreThanMealJapanese1 = content?.moreThanAMeal?.japaneseText1 || '静かな夕食や特別な祝いごと、気軽なランチでも、';
-  const moreThanMealJapanese2 = content?.moreThanAMeal?.japaneseText2 || '一人ひとりに寄り添い、心に残るひとときを。';
-  const moreThanMealJapanese3 = content?.moreThanAMeal?.japaneseText3 || '大松では、日本の心「おもてなし」を大切に。';
-  const moreThanMealJapanese4 = content?.moreThanAMeal?.japaneseText4 || '食を超えて';
+  const moreThanMealTitle =
+    (useCms && content?.moreThanAMeal?.title) || t('more_than_a_meal');
+  const moreThanMealDescription =
+    (useCms && content?.moreThanAMeal?.description) ||
+    t('at_daimasu_we_believe');
+  const moreThanMealJapanese1 =
+    content?.moreThanAMeal?.japaneseText1 ||
+    '静かな夕食や特別な祝いごと、気軽なランチでも、';
+  const moreThanMealJapanese2 =
+    content?.moreThanAMeal?.japaneseText2 ||
+    '一人ひとりに寄り添い、心に残るひとときを。';
+  const moreThanMealJapanese3 =
+    content?.moreThanAMeal?.japaneseText3 ||
+    '大松では、日本の心「おもてなし」を大切に。';
+  const moreThanMealJapanese4 =
+    content?.moreThanAMeal?.japaneseText4 || '食を超えて';
 
   // Meet Our Staff defaults
-  const meetOurStaffTitle = content?.meetOurStaff?.title || 'Meet Our Staff';
+  const meetOurStaffTitle =
+    (useCms && content?.meetOurStaff?.title) || t('meet_our_staff');
 
   return (
     <section className="w-full">
@@ -93,10 +118,12 @@ export default function AboutUs({content}: Props) {
         {/* Background Image */}
         <Image
           src="/aboutus/aboutus-hero.png"
-          alt="The Art of Omotenashi"
+          alt=""
           fill
-          className="object-cover"
+          sizes="100vw"
+          quality={75}
           priority
+          className="object-cover"
         />
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/40" />
@@ -117,7 +144,7 @@ export default function AboutUs({content}: Props) {
               <p className="text-base md:text-lg font-poppins leading-relaxed mb-8 max-w-md">
                 {heroDescription}
               </p>
-              <Link
+              <a
                 href={heroButtonLink}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -127,7 +154,7 @@ export default function AboutUs({content}: Props) {
                 )}
               >
                 {heroButtonText}
-              </Link>
+              </a>
             </div>
 
             {/* Right Japanese Vertical Text */}
@@ -175,6 +202,8 @@ export default function AboutUs({content}: Props) {
                   src="/aboutus/aboutus-daimasu.png"
                   alt="Sushi presentation"
                   fill
+                  sizes="(min-width: 1024px) 630px, 100vw"
+                  quality={75}
                   className="object-cover rounded-lg"
                 />
               </div>
@@ -191,6 +220,8 @@ export default function AboutUs({content}: Props) {
             src="/aboutus/aboutus-texture-bg.png"
             alt=""
             fill
+            sizes="100vw"
+            quality={50}
             className="object-cover mix-blend-multiply opacity-30"
           />
         </div>
@@ -213,6 +244,8 @@ export default function AboutUs({content}: Props) {
                   src="/aboutus/aboutus-crafted.png"
                   alt="Chef preparing food"
                   fill
+                  sizes="(min-width: 1024px) 630px, 100vw"
+                  quality={75}
                   className="object-cover rounded-lg"
                 />
               </div>
@@ -226,8 +259,10 @@ export default function AboutUs({content}: Props) {
         {/* Background Image */}
         <Image
           src="/aboutus/more-than-meal-bg-52682f.png"
-          alt="More Than a Meal"
+          alt=""
           fill
+          sizes="100vw"
+          quality={70}
           className="object-cover"
         />
         {/* Gradient overlay */}
@@ -279,6 +314,8 @@ export default function AboutUs({content}: Props) {
               src="/aboutus/staff-grid.png"
               alt="Our Staff"
               fill
+              sizes="(min-width: 1280px) 1300px, 100vw"
+              quality={75}
               className="object-contain"
             />
           </div>
@@ -302,6 +339,8 @@ export default function AboutUs({content}: Props) {
                       src={staff.image}
                       alt={staff.name}
                       fill
+                      sizes="100vw"
+                      quality={70}
                       className="object-cover"
                     />
                   </div>

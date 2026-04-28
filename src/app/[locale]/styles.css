@@ -76,6 +76,9 @@
   }
   body {
     @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 }
 
@@ -89,25 +92,73 @@
     writing-mode: vertical-lr;
     text-orientation: mixed;
   }
+
+  /* Keep CJK words from breaking mid-character. Falls back to normal
+   * wrapping when a single word is wider than the container. */
+  .break-keep-all {
+    word-break: keep-all;
+    overflow-wrap: normal;
+  }
+
+  /* Faint dot-grid that reads as washi paper grain on dark surfaces. */
+  .bg-washi-grain {
+    background-image: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px
+    );
+    background-size: 20px 20px;
+  }
 }
 
-/* Font Family Classes */
+/* Font Family Classes
+ * For each Latin display font we layer a Japanese fallback so CJK glyphs
+ * use the bundled Japanese family instead of OS defaults. Browsers do
+ * per-glyph fallback, so Latin still resolves to the primary face.
+ */
 .font-poppins {
-  font-family: var(--font-poppins), system-ui, -apple-system, sans-serif;
+  /* Latin glyphs render with Poppins (modern sans). Browsers fall back per
+   * glyph, so Japanese characters resolve to Shippori Mincho — matching the
+   * elegant brand voice instead of the OS default Gothic. */
+  font-family:
+    var(--font-poppins),
+    var(--font-shippori),
+    'Hiragino Mincho ProN',
+    'Yu Mincho',
+    system-ui,
+    serif;
 }
 
 .font-shippori {
-  font-family: var(--font-shippori), serif;
+  font-family:
+    var(--font-shippori),
+    'Hiragino Mincho ProN',
+    'Yu Mincho',
+    serif;
 }
 
 .font-mplus {
-  font-family: var(--font-mplus), sans-serif;
+  font-family:
+    var(--font-mplus),
+    'Hiragino Kaku Gothic ProN',
+    'Yu Gothic',
+    sans-serif;
 }
 
 .font-zen-old-mincho {
-  font-family: 'Zen Old Mincho', var(--font-shippori), serif;
+  font-family:
+    'Zen Old Mincho',
+    var(--font-shippori),
+    'Hiragino Mincho ProN',
+    'Yu Mincho',
+    serif;
 }
 
 .font-playfair {
-  font-family: 'Playfair Display', var(--font-shippori), serif;
+  font-family:
+    'Playfair Display',
+    var(--font-shippori),
+    'Hiragino Mincho ProN',
+    'Yu Mincho',
+    serif;
 }

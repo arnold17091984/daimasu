@@ -43,6 +43,11 @@ module.exports = {
           red: 'hsl(var(--daimasu-red))',
           black: 'hsl(var(--daimasu-black))'
         },
+        gold: {
+          DEFAULT: '#D4AF37',
+          dark: '#B8862A',
+          muted: '#8A7A5A'
+        },
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))'

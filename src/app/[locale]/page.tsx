@@ -1,5 +1,6 @@
+import type {Metadata} from 'next';
 import {Locale} from 'next-intl';
-import {setRequestLocale} from 'next-intl/server';
+import {getTranslations, setRequestLocale} from 'next-intl/server';
 import {getHomepageContent} from '@/lib/keystatic';
 import HeroSection from './(home)/(components)/HeroSection';
 import TatlerAwardsSection from './(home)/(components)/TatlerAwardsSection';
@@ -11,6 +12,20 @@ import LocationSection from './(home)/(components)/LocationSection';
 type Props = {
   params: Promise<{locale: Locale}>;
 };
+
+export async function generateMetadata({params}: Props): Promise<Metadata> {
+  const {locale} = await params;
+  const t = await getTranslations({locale});
+  const title = t('seo_home_title');
+  const description = t('seo_home_description');
+  return {
+    title,
+    description,
+    alternates: {canonical: `/${locale}`},
+    openGraph: {title, description, url: `/${locale}`},
+    twitter: {card: 'summary_large_image', title, description}
+  };
+}
 
 export default async function IndexPage({params}: Props) {
   const {locale} = await params;

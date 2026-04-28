@@ -9,10 +9,12 @@ function OurMenuHeader() {
     <div className="relative w-full h-[300px] sm:h-[400px] md:h-[300px] text-white">
       <Image
         src="/aboutus/aboutus-cover.png"
-        alt="Rooms Cover"
+        alt=""
         fill
-        className="object-cover"
+        sizes="100vw"
+        quality={70}
         priority
+        className="object-cover"
       />
       <div className="absolute inset-0 flex flex-col justify-start items-center text-left px-4 sm:px-8 pt-2 sm:pt-8 pb-4">
         <div className="flex flex-row items-start gap-10 max-w-5xl w-full">

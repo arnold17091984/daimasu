@@ -1,9 +1,10 @@
 'use client';
 
 import {buttonVariants} from '@/components/ui/button';
+import {Link} from '@/i18n/navigation';
 import {cn} from '@/lib/utils';
+import {useLocale, useTranslations} from 'next-intl';
 import Image from 'next/image';
-import Link from 'next/link';
 
 type MembershipContent = {
   title?: string;
@@ -17,10 +18,16 @@ type Props = {
 };
 
 export default function MembershipSection({content}: Props) {
-  const title = content?.title || "More Than a Card.\nIt's an Invitation.";
-  const description = content?.description || "A symbol of access to Daimasu's most sought-after experiences—priority reservations, exclusive privileges, and elevated dining moments reserved for members.";
-  const buttonText = content?.buttonText || "Become a member";
-  const buttonLink = content?.buttonLink || "#";
+  const t = useTranslations();
+  const useCms = useLocale() === 'en';
+
+  const title =
+    (useCms && content?.title) ||
+    `${t('membership_title_line_1')}\n${t('membership_title_line_2')}`;
+  const description =
+    (useCms && content?.description) || t('membership_description');
+  const buttonText = (useCms && content?.buttonText) || t('membership_button');
+  const buttonLink = content?.buttonLink || '/membership';
 
   // Split title into lines
   const titleLines = title.split('\n');
@@ -36,6 +43,8 @@ export default function MembershipSection({content}: Props) {
           src="/homepage/membership-bg.png"
           alt=""
           fill
+          sizes="100vw"
+          quality={70}
           className="object-cover object-left"
         />
         {/* Dark Gradient Overlay - fades to black on the right */}
@@ -57,7 +66,7 @@ export default function MembershipSection({content}: Props) {
             </div>
 
             {/* Title */}
-            <h2 className="font-playfair font-bold text-xl md:text-2xl lg:text-4xl text-white leading-[1.23] tracking-[0.02em] mb-6">
+            <h2 className="font-playfair font-bold text-2xl md:text-3xl lg:text-4xl text-white leading-tight md:leading-tight lg:!leading-[1.3] tracking-[0.02em] mb-6 break-keep-all">
               {titleLines.map((line, index) => (
                 <span key={index}>
                   {line}
@@ -72,7 +81,7 @@ export default function MembershipSection({content}: Props) {
             </p>
 
             {/* CTA Button */}
-            <div className='flex items-center'>
+            <div className="flex items-center">
               <Link
                 href={buttonLink}
                 className={cn(

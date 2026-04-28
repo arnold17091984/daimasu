@@ -5,8 +5,20 @@ tsconfig.tsbuildinfo
 /test-results/
 /playwright-report/
 /playwright/.cache/
+.playwright-mcp/
 out
 messages/en.d.json.ts
 .env
 .env.local
 .env.production
+
+# QA screenshots — local-only review artefacts
+/qa/
+/lighthouse-*.html
+/lighthouse-*.json
+
+# macOS Finder copy duplicates (e.g. "image 2.png")
+* 2.png
+* 2.jpg
+* 2.jpeg
+* 2.webp

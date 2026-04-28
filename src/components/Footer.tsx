@@ -1,5 +1,8 @@
+'use client';
+
 import {buttonVariants} from '@/components/ui/button';
 import {cn} from '@/lib/utils';
+import {useLocale, useTranslations} from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 import {FaFacebookF, FaInstagram} from 'react-icons/fa';
@@ -23,10 +26,25 @@ type FooterProps = {
 };
 
 export default function Footer({content}: FooterProps) {
-  const hours = content?.hours ?? {line1: 'Open All Year-Round', line2: '11:00 AM - 12:00 AM'};
-  const contactButton = content?.contactButton ?? {text: 'Contact Us', link: 'https://m.me/DaimasuMakati'};
-  const socialLinks = content?.socialLinks ?? {facebookUrl: 'https://facebook.com', instagramUrl: 'https://instagram.com'};
-  const copyright = content?.copyright ?? '© 2026 Daimasu. All rights reserved';
+  const t = useTranslations();
+  const useCms = useLocale() === 'en';
+
+  const hours =
+    useCms && content?.hours
+      ? content.hours
+      : {line1: t('footer_hours_line_1'), line2: t('footer_hours_line_2')};
+  const contactButton =
+    useCms && content?.contactButton
+      ? content.contactButton
+      : {
+          text: t('contact_us'),
+          link: content?.contactButton?.link ?? 'https://m.me/DaimasuMakati'
+        };
+  const socialLinks = content?.socialLinks ?? {
+    facebookUrl: 'https://facebook.com',
+    instagramUrl: 'https://instagram.com'
+  };
+  const copyright = (useCms && content?.copyright) || t('footer_copyright');
 
   return (
     <footer
@@ -39,6 +57,8 @@ export default function Footer({content}: FooterProps) {
           src="/homepage/footer-bg.png"
           alt=""
           fill
+          sizes="100vw"
+          quality={60}
           className="object-cover opacity-60"
         />
         <div className="absolute inset-0 bg-black/40" />
@@ -53,6 +73,7 @@ export default function Footer({content}: FooterProps) {
               src="/homepage/footer-logo.svg"
               alt="Daimasu"
               fill
+              sizes="(min-width: 1024px) 284px, (min-width: 768px) 250px, 200px"
               className="object-contain"
             />
           </div>

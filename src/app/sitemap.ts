@@ -4,21 +4,33 @@ import {host} from '@/config';
 import {routing} from '@/i18n/routing';
 import {getPathname} from '@/i18n/navigation';
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  return [...getEntries('/'), ...getEntries('/pathnames')];
-}
+// Routes that should appear in the sitemap. Order roughly reflects how a
+// search engine should prioritise them (home first, then key landing pages).
+const ROUTES = [
+  {href: '/', priority: 1, changeFrequency: 'weekly' as const},
+  {href: '/our-menu', priority: 0.9, changeFrequency: 'weekly' as const},
+  {href: '/our-rooms', priority: 0.9, changeFrequency: 'monthly' as const},
+  {href: '/about-us', priority: 0.7, changeFrequency: 'monthly' as const},
+  {href: '/membership', priority: 0.7, changeFrequency: 'monthly' as const}
+];
 
 type Href = Parameters<typeof getPathname>[0]['href'];
 
-function getEntries(href: Href) {
-  return routing.locales.map((locale) => ({
-    url: getUrl(href, locale),
-    alternates: {
-      languages: Object.fromEntries(
-        routing.locales.map((cur) => [cur, getUrl(href, cur)])
-      )
-    }
-  }));
+export default function sitemap(): MetadataRoute.Sitemap {
+  const lastModified = new Date();
+  return ROUTES.flatMap((route) =>
+    routing.locales.map((locale) => ({
+      url: getUrl(route.href as Href, locale),
+      lastModified,
+      changeFrequency: route.changeFrequency,
+      priority: route.priority,
+      alternates: {
+        languages: Object.fromEntries(
+          routing.locales.map((cur) => [cur, getUrl(route.href as Href, cur)])
+        )
+      }
+    }))
+  );
 }
 
 function getUrl(href: Href, locale: Locale) {

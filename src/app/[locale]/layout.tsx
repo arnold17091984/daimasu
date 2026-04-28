@@ -1,40 +1,114 @@
-import { notFound } from 'next/navigation';
-import { Locale, hasLocale, NextIntlClientProvider } from 'next-intl';
-import { setRequestLocale } from 'next-intl/server';
-import { ReactNode } from 'react';
-import { clsx } from 'clsx';
-import { routing } from '@/i18n/routing';
+import {notFound} from 'next/navigation';
+import {Locale, hasLocale, NextIntlClientProvider} from 'next-intl';
+import {getTranslations, setRequestLocale} from 'next-intl/server';
+import {ReactNode} from 'react';
+import {clsx} from 'clsx';
+import type {Metadata} from 'next';
+import {routing} from '@/i18n/routing';
+import {host} from '@/config';
 import './styles.css';
-import { mplus, poppins, shippori } from '@/lib/fonts';
+import {mplus, poppins, shippori} from '@/lib/fonts';
 import NextTopLoader from 'nextjs-toploader';
 import ClientProviders from '@/components/ClientProviders';
 import Script from 'next/script';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { getFooterContent } from '@/lib/keystatic';
+import {getFooterContent} from '@/lib/keystatic';
 
 type Props = {
   children: ReactNode;
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{locale: Locale}>;
 };
 
 export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
+  return routing.locales.map((locale) => ({locale}));
 }
 
-// export async function generateMetadata(props: Omit<Props, 'children'>) {
-//   const {locale} = await props.params;
+const OG_LOCALE: Record<Locale, string> = {
+  en: 'en_PH',
+  ja: 'ja_JP'
+};
 
-//   // const t = await getTranslations({locale});
+export async function generateMetadata(
+  props: Omit<Props, 'children'>
+): Promise<Metadata> {
+  const {locale} = await props.params;
+  const t = await getTranslations({locale});
 
-//   return {
-//     title: 'Daimasu'
-//   };
-// }
+  const title = t('seo_default_title');
+  const description = t('seo_default_description');
+  const siteName = t('seo_site_name');
+  const localePath = `/${locale}`;
+  const ogImage = `${host}/homepage/hero-bg.png`;
 
-export default async function LocaleLayout({ children, params }: Props) {
+  return {
+    metadataBase: new URL(host),
+    title: {
+      default: title,
+      template: t('seo_title_template')
+    },
+    description,
+    keywords: t('seo_keywords'),
+    applicationName: siteName,
+    authors: [{name: siteName, url: host}],
+    creator: siteName,
+    publisher: siteName,
+    alternates: {
+      canonical: localePath,
+      languages: Object.fromEntries(
+        routing.locales.map((loc) => [loc, `/${loc}`])
+      )
+    },
+    openGraph: {
+      type: 'website',
+      url: `${host}${localePath}`,
+      siteName,
+      title,
+      description,
+      locale: OG_LOCALE[locale],
+      alternateLocale: routing.locales
+        .filter((l) => l !== locale)
+        .map((l) => OG_LOCALE[l]),
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: siteName
+        }
+      ]
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [ogImage]
+    },
+    icons: {
+      icon: '/homepage/daimasu-logo.svg',
+      apple: '/homepage/daimasu-logo.svg'
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+        'max-video-preview': -1
+      }
+    },
+    other: {
+      'geo.region': 'PH-00',
+      'geo.placename': 'Makati'
+    }
+  };
+}
+
+export default async function LocaleLayout({children, params}: Props) {
   // Ensure that the incoming `locale` is valid
-  const { locale } = await params;
+  const {locale} = await params;
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
@@ -45,8 +119,77 @@ export default async function LocaleLayout({ children, params }: Props) {
   // Fetch footer content
   const footerContent = await getFooterContent();
 
+  // Localised content for Restaurant structured data + meta links
+  const t = await getTranslations({locale});
+  const restaurantJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Restaurant',
+    '@id': `${host}/#restaurant`,
+    name: t('seo_site_name'),
+    alternateName: 'Daimasu',
+    url: `${host}/${locale}`,
+    image: [
+      `${host}/homepage/hero-bg.png`,
+      `${host}/homepage/tatler-center.png`
+    ],
+    logo: `${host}/homepage/daimasu-logo.svg`,
+    description: t('seo_default_description'),
+    servesCuisine: ['Japanese', 'Sushi', 'Omakase', 'Kaiseki'],
+    priceRange: '$$$',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Ground Floor Allegro Center, Chino Roces Ave',
+      addressLocality: 'Makati',
+      addressRegion: 'Metro Manila',
+      postalCode: '1232',
+      addressCountry: 'PH'
+    },
+    telephone: '+63-917-109-6032',
+    email: 'daimasumakati@gmail.com',
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: [
+          'Monday',
+          'Tuesday',
+          'Wednesday',
+          'Thursday',
+          'Friday',
+          'Saturday',
+          'Sunday'
+        ],
+        opens: '11:00',
+        closes: '24:00'
+      }
+    ],
+    sameAs: [
+      'https://www.facebook.com/DaimasuMakati',
+      'https://www.instagram.com/daimasu_makati/'
+    ],
+    award: 'Tatler Dining Philippines 2024',
+    acceptsReservations: 'True',
+    inLanguage: routing.locales
+  };
+
   return (
     <html className="h-full" lang={locale}>
+      <head>
+        {/* hreflang for sister-locale crawl. Next.js metadata.alternates.languages emits <link rel="alternate"> automatically; this duplicates with absolute URLs for crawlers that prefer them. */}
+        {routing.locales.map((alt) => (
+          <link
+            key={alt}
+            rel="alternate"
+            hrefLang={alt}
+            href={`${host}/${alt}`}
+          />
+        ))}
+        <link rel="alternate" hrefLang="x-default" href={`${host}/`} />
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{__html: JSON.stringify(restaurantJsonLd)}}
+        />
+      </head>
       <body
         className={clsx(
           // inter.className,
@@ -56,14 +199,14 @@ export default async function LocaleLayout({ children, params }: Props) {
           'flex h-full flex-col'
         )}
       >
-        {process.env.NODE_ENV === "development" && (
+        {process.env.NODE_ENV === 'development' && (
           <Script
             src="//unpkg.com/react-grab/dist/index.global.js"
             crossOrigin="anonymous"
             strategy="beforeInteractive"
           />
         )}
-        {process.env.NODE_ENV === "development" && (
+        {process.env.NODE_ENV === 'development' && (
           <Script
             src="//unpkg.com/@react-grab/claude-code/dist/client.global.js"
             strategy="lazyOnload"

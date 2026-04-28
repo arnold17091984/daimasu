@@ -2,6 +2,8 @@
 
 import {buttonVariants} from '@/components/ui/button';
 import {cn} from '@/lib/utils';
+import {useLocale, useTranslations} from 'next-intl';
+import Image from 'next/image';
 import Link from 'next/link';
 
 type HeroContent = {
@@ -21,25 +23,39 @@ type Props = {
 };
 
 export default function HeroSection({content}: Props) {
-  const subtitle = content?.subtitle || "Struggling to find truly\nAuthentic Japanese dining?";
-  const tagline = content?.tagline || "Japan, served at the table.";
-  const description = content?.description || "Premium seafood, wagyu, and artisanal ingredients are flown from Japan and prepared with precision and respect for tradition, creating an unmistakably Japanese dining experience.";
-  const buttonText = content?.buttonText || "Book a Table";
-  const buttonLink = content?.buttonLink || "https://m.me/DaimasuMakati";
-  const japaneseText1 = content?.japaneseText1 || "本物の日本の味。";
-  const japaneseText2 = content?.japaneseText2 || "フィリピンで味わう、";
-  const japaneseText3 = content?.japaneseText3 || "日本の味。";
-  const japaneseText4 = content?.japaneseText4 || "食卓に広がる、";
+  const t = useTranslations();
+  const locale = useLocale();
+  // Keystatic content is single-locale (English). Prefer translations for non-English locales
+  // so the JA route doesn't display English copy authored in the CMS.
+  const useCms = locale === 'en';
+
+  const subtitle =
+    (useCms && content?.subtitle) ||
+    `${t('hero_subtitle_line_1')}\n${t('hero_subtitle_line_2')}`;
+  const tagline = (useCms && content?.tagline) || t('hero_tagline');
+  const description = (useCms && content?.description) || t('hero_description');
+  const buttonText = (useCms && content?.buttonText) || t('book_a_table');
+  const buttonLink = content?.buttonLink || 'https://m.me/DaimasuMakati';
+  const japaneseText1 = content?.japaneseText1 || t('hero_japanese_1');
+  const japaneseText2 = content?.japaneseText2 || t('hero_japanese_2');
+  const japaneseText3 = content?.japaneseText3 || t('hero_japanese_3');
+  const japaneseText4 = content?.japaneseText4 || t('hero_japanese_4');
 
   // Split subtitle into lines
   const subtitleLines = subtitle.split('\n');
 
   return (
     <section className="relative min-h-screen flex flex-col overflow-hidden bg-black">
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-bottom bg-cover"
-        style={{backgroundImage: "url('/homepage/hero-bg.png')"}}
+      {/* Background image — routed through next/image so it's served as
+          AVIF/WebP and resized for each viewport. */}
+      <Image
+        src="/homepage/hero-bg.png"
+        alt=""
+        fill
+        priority
+        quality={75}
+        sizes="100vw"
+        className="object-cover object-bottom"
       />
 
       {/* Main Content Area */}
