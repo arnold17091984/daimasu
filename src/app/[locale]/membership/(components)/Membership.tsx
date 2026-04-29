@@ -184,8 +184,11 @@ function CellValue({
     );
   }
   if (typeof v === 'string' && v.startsWith('tier_')) {
+    // `t`'s strict literal-key signature does not allow runtime-computed
+    // keys; cast through a loose alias.
+    const tt = t as unknown as (key: string) => string;
     return (
-      <span className={isToku ? 'text-gold/80' : 'text-white/75'}>{t(v)}</span>
+      <span className={isToku ? 'text-gold/80' : 'text-white/75'}>{tt(v)}</span>
     );
   }
   return <span className={isToku ? 'text-gold/80' : 'text-white/75'}>{v}</span>;
@@ -193,6 +196,9 @@ function CellValue({
 
 export default function Membership({content}: Readonly<Props>) {
   const t = useTranslations();
+  // Dynamic-key alias for table rows / tier metadata where the message key is
+  // computed at runtime; next-intl's strict-typed `t` rejects `string` keys.
+  const tt = t as unknown as (key: string) => string;
   const useCms = useLocale() === 'en';
 
   // Hero
@@ -768,10 +774,10 @@ export default function Membership({content}: Readonly<Props>) {
                       scope="row"
                       className="py-3 pr-4 text-left font-poppins font-normal text-[14px] text-white/65"
                     >
-                      {t(row.labelKey)}
+                      {tt(row.labelKey)}
                       {row.noteKey && (
                         <span className="block font-poppins text-[11px] text-white/35 mt-0.5">
-                          {t(row.noteKey)}
+                          {tt(row.noteKey)}
                         </span>
                       )}
                     </th>
@@ -850,10 +856,10 @@ export default function Membership({content}: Readonly<Props>) {
                   />
                 </div>
                 <h3 className="font-shippori font-bold text-[20px] text-white mb-3 leading-[1.4]">
-                  {t(titleKey)}
+                  {tt(titleKey)}
                 </h3>
                 <p className="font-poppins text-[13px] text-white/55 leading-[1.7]">
-                  {t(descKey)}
+                  {tt(descKey)}
                 </p>
               </div>
             ))}
@@ -928,10 +934,10 @@ export default function Membership({content}: Readonly<Props>) {
                   </span>
                 </div>
                 <h3 className="mt-5 font-playfair font-bold text-[22px] lg:text-[26px] text-white leading-[1.3]">
-                  {t(titleKey)}
+                  {tt(titleKey)}
                 </h3>
                 <p className="mt-3 font-poppins text-[14px] lg:text-[15px] text-white/65 leading-[1.7]">
-                  {t(descKey)}
+                  {tt(descKey)}
                 </p>
               </div>
             ))}
@@ -967,7 +973,7 @@ export default function Membership({content}: Readonly<Props>) {
                   aria-hidden="true"
                   className="block w-[2px] h-[14px] bg-[#C66600] shrink-0"
                 />
-                {t(key)}
+                {tt(key)}
               </li>
             ))}
           </ul>

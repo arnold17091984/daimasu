@@ -15,9 +15,12 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import {getFooterContent} from '@/lib/keystatic';
 
+// Next.js's auto-generated LayoutProps types `params` as `{ locale: string }`
+// (not narrowed to our `Locale` union). Accept the wider type and narrow at
+// runtime via `hasLocale`.
 type Props = {
   children: ReactNode;
-  params: Promise<{locale: Locale}>;
+  params: Promise<{locale: string}>;
 };
 
 export function generateStaticParams() {
@@ -32,7 +35,9 @@ const OG_LOCALE: Record<Locale, string> = {
 export async function generateMetadata(
   props: Omit<Props, 'children'>
 ): Promise<Metadata> {
-  const {locale} = await props.params;
+  const {locale: rawLocale} = await props.params;
+  if (!hasLocale(routing.locales, rawLocale)) notFound();
+  const locale = rawLocale;
   const t = await getTranslations({locale});
 
   const title = t('seo_default_title');

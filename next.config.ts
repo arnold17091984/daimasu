@@ -8,13 +8,6 @@ const withNextIntl = createNextIntlPlugin({
 });
 
 const config: NextConfig = {
-  typescript: {
-    // !! WARN !!
-    // Dangerously allow production builds to successfully complete even if
-    // your project has type errors.
-    // !! WARN !!
-    ignoreBuildErrors: true
-  },
   compiler: {
     // Remove console logs only in production
     removeConsole: process.env.NODE_ENV === 'production'

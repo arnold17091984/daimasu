@@ -2,6 +2,7 @@
 
 import {buttonVariants} from '@/components/ui/button';
 import {Link} from '@/i18n/navigation';
+import type {LinkHref} from '@/lib/typed-link';
 import {cn} from '@/lib/utils';
 import {useLocale, useTranslations} from 'next-intl';
 import Image from 'next/image';
@@ -180,7 +181,7 @@ export default function SignatureOfferingsSection({
                   {sakeDescription}
                 </p>
                 <Link
-                  href={sakeButtonLink}
+                  href={sakeButtonLink as LinkHref}
                   className={cn(
                     buttonVariants({
                       variant: 'daimasu-red',
@@ -243,7 +244,7 @@ export default function SignatureOfferingsSection({
                   {quietDescription}
                 </p>
                 <Link
-                  href={quietButtonLink}
+                  href={quietButtonLink as LinkHref}
                   className={cn(
                     buttonVariants({
                       variant: 'daimasu-red',

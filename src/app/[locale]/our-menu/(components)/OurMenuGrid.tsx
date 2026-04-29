@@ -47,8 +47,6 @@ const OurMenuGrid = () => {
     }
   }, [inView, isLoadingMore]);
 
-  console.log(products);
-
   return (
     <>
       <div className="grid grid-cols-[repeat(auto-fill,minmax(320px,1fr))] gap-4">

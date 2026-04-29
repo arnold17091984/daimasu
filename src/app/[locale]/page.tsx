@@ -27,6 +27,21 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
   };
 }
 
+// Keystatic returns `string | null` for optional fields, but our component
+// props use `string | undefined`. Coerce nulls to undefined for fields whose
+// types diverge across the boundary.
+function nullToUndefined<T extends Record<string, unknown> | undefined>(
+  obj: T,
+  keys: readonly string[]
+): T {
+  if (!obj) return obj;
+  const out: Record<string, unknown> = {...obj};
+  for (const k of keys) {
+    if (out[k] === null) out[k] = undefined;
+  }
+  return out as T;
+}
+
 export default async function IndexPage({params}: Props) {
   const {locale} = await params;
 
@@ -36,9 +51,19 @@ export default async function IndexPage({params}: Props) {
   // Fetch homepage content from Keystatic
   const content = await getHomepageContent();
 
+  const hero = nullToUndefined(content?.hero, ['buttonLink']) as
+    | React.ComponentProps<typeof HeroSection>['content']
+    | undefined;
+  const grabFood = nullToUndefined(content?.grabFood, ['buttonLink']) as
+    | React.ComponentProps<typeof GrabFoodSection>['content']
+    | undefined;
+  const location = nullToUndefined(content?.location, ['buttonLink']) as
+    | React.ComponentProps<typeof LocationSection>['content']
+    | undefined;
+
   return (
     <>
-      <HeroSection content={content?.hero} />
+      <HeroSection content={hero} />
       <TatlerAwardsSection content={content?.tatlerAwards} />
       <SignatureOfferingsSection
         artOfIngredient={content?.artOfIngredient}
@@ -46,8 +71,8 @@ export default async function IndexPage({params}: Props) {
         quietExperience={content?.quietExperience}
       />
       <MembershipSection content={content?.membership} />
-      <GrabFoodSection content={content?.grabFood} />
-      <LocationSection content={content?.location} />
+      <GrabFoodSection content={grabFood} />
+      <LocationSection content={location} />
     </>
   );
 }

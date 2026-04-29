@@ -25,5 +25,19 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
 export default async function AboutUsPage() {
   const content = await getAboutUsContent();
 
-  return <AboutUs content={content} />;
+  // Keystatic returns `string | null` for optional fields; AboutUs expects
+  // `string | undefined`. Normalise null -> undefined to satisfy strict types.
+  const normalised = content
+    ? {
+        ...content,
+        hero: content.hero
+          ? {
+              ...content.hero,
+              buttonLink: content.hero.buttonLink ?? undefined
+            }
+          : undefined
+      }
+    : null;
+
+  return <AboutUs content={normalised} />;
 }

@@ -103,7 +103,7 @@ export default function AboutUs({content}: Props) {
     '一人ひとりに寄り添い、心に残るひとときを。';
   const moreThanMealJapanese3 =
     content?.moreThanAMeal?.japaneseText3 ||
-    '大松では、日本の心「おもてなし」を大切に。';
+    '大枡では、日本の心「おもてなし」を大切に。';
   const moreThanMealJapanese4 =
     content?.moreThanAMeal?.japaneseText4 || '食を超えて';
 

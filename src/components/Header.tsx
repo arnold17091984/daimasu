@@ -3,6 +3,7 @@
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import {buttonVariants} from '@/components/ui/button';
 import {Link} from '@/i18n/navigation';
+import type {LinkHref} from '@/lib/typed-link';
 import {cn} from '@/lib/utils';
 import {useTranslations} from 'next-intl';
 import Image from 'next/image';
@@ -53,7 +54,11 @@ export default function Header() {
                   {t(link.key)}
                 </a>
               ) : (
-                <Link key={link.key} href={link.href} className={className}>
+                <Link
+                  key={link.key}
+                  href={link.href as LinkHref}
+                  className={className}
+                >
                   {t(link.key)}
                 </Link>
               );
@@ -109,7 +114,7 @@ export default function Header() {
               ) : (
                 <Link
                   key={link.key}
-                  href={link.href}
+                  href={link.href as LinkHref}
                   className={className}
                   onClick={close}
                 >

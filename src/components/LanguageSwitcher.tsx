@@ -5,7 +5,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
+  SelectValue
 } from '@/components/ui/select';
 import {usePathname, useRouter} from '@/i18n/navigation';
 import {useLocale} from 'next-intl';
@@ -13,7 +13,7 @@ import {useTransition} from 'react';
 
 const locales = [
   {value: 'en', label: 'English'},
-  {value: 'ja', label: '日本語'},
+  {value: 'ja', label: '日本語'}
 ];
 
 interface LanguageSwitcherProps {
@@ -28,12 +28,24 @@ export default function LanguageSwitcher({className}: LanguageSwitcherProps) {
 
   const handleLocaleChange = (newLocale: string) => {
     startTransition(() => {
-      router.replace(pathname, {locale: newLocale as 'en' | 'ja'});
+      // `pathname` is typed against the routing's pathnames union; the
+      // current page's pathname is always a member of that union at runtime,
+      // but TypeScript can't narrow it for `router.replace`'s parameter type
+      // (which expects a literal subset). Cast through `Parameters` rather
+      // than `any` to keep the locale option type-checked.
+      type ReplaceArgs = Parameters<typeof router.replace>;
+      router.replace(pathname as ReplaceArgs[0], {
+        locale: newLocale as 'en' | 'ja'
+      });
     });
   };
 
   return (
-    <Select value={locale} onValueChange={handleLocaleChange} disabled={isPending}>
+    <Select
+      value={locale}
+      onValueChange={handleLocaleChange}
+      disabled={isPending}
+    >
       <SelectTrigger
         className={`w-auto gap-2 border-none bg-transparent text-white font-poppins font-bold text-base leading-[1.09] tracking-[0.02em] hover:text-white/80 focus:ring-0 focus:ring-offset-0 ${className}`}
       >

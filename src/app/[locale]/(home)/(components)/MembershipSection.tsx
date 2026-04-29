@@ -2,6 +2,7 @@
 
 import {buttonVariants} from '@/components/ui/button';
 import {Link} from '@/i18n/navigation';
+import type {LinkHref} from '@/lib/typed-link';
 import {cn} from '@/lib/utils';
 import {useLocale, useTranslations} from 'next-intl';
 import Image from 'next/image';
@@ -83,7 +84,7 @@ export default function MembershipSection({content}: Props) {
             {/* CTA Button */}
             <div className="flex items-center">
               <Link
-                href={buttonLink}
+                href={buttonLink as LinkHref}
                 className={cn(
                   buttonVariants({variant: 'daimasu-red', size: 'daimasu-lg'}),
                   'w-max mx-auto'
