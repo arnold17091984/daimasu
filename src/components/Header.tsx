@@ -30,16 +30,25 @@ export default function Header() {
   return (
     <header className="absolute top-0 left-0 right-0 z-50 py-6 lg:py-8 px-4 md:px-8 lg:px-12 xl:px-16">
       <div className="flex items-center justify-between gap-6">
-        {/* Left Section - Logo */}
-        <Link href="/" className="flex-shrink-0">
+        {/* Left Section - Logo
+            On lg+ render the wordmark; on smaller screens swap to a kanji
+            monogram so the global header doesn't crowd the mobile hero.
+            Phase 1C — luxury upgrade roadmap. */}
+        <Link href="/" className="flex-shrink-0" aria-label="Daimasu — home">
           <Image
             src="/homepage/daimasu-logo.svg"
             alt="Daimasu"
             width={410}
             height={84}
-            className="h-12 md:h-14 lg:h-16 w-auto"
+            className="hidden lg:block h-12 md:h-14 lg:h-16 w-auto"
             priority
           />
+          <span
+            aria-hidden="true"
+            className="lg:hidden inline-flex items-center justify-center h-10 w-10 border border-gold-500 text-gold-300 font-shippori text-xl leading-none"
+          >
+            大
+          </span>
         </Link>
 
         {/* Right Section - Navigation */}

@@ -13,6 +13,7 @@ import ClientProviders from '@/components/ClientProviders';
 import Script from 'next/script';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import StickyReservationBar from '@/components/StickyReservationBar';
 import {getFooterContent} from '@/lib/keystatic';
 
 // Next.js's auto-generated LayoutProps types `params` as `{ locale: string }`
@@ -220,8 +221,14 @@ export default async function LocaleLayout({children, params}: Props) {
         <ClientProviders>
           <NextIntlClientProvider>
             <Header />
-            <main className="flex-1">{children}</main>
-            <Footer content={footerContent} />
+            {/* StickyReservationBar is fixed at the bottom on mobile, so
+                pad the wrapper containing both <main> AND <Footer> so the
+                bar can't occlude either. md+ hides the bar entirely. */}
+            <div className="flex flex-1 flex-col pb-14 md:pb-0">
+              <main className="flex-1">{children}</main>
+              <Footer content={footerContent} />
+            </div>
+            <StickyReservationBar />
           </NextIntlClientProvider>
         </ClientProviders>
       </body>
