@@ -33,6 +33,17 @@ module.exports = {
         slate: {
           850: 'hsl(222deg 47% 16%)'
         },
+        // Phase 1 luxury palette — sumi-ink, washi paper, dull gold.
+        // Legacy daimasu.* tokens still resolve via styles.css aliases.
+        ink: {
+          900: 'hsl(var(--ink-900))',
+          700: 'hsl(var(--ink-700))'
+        },
+        washi: {
+          50: 'hsl(var(--washi-50))',
+          100: 'hsl(var(--washi-100))'
+        },
+        vermillion: 'hsl(var(--vermillion))',
         daimasu: {
           main: 'hsl(var(--daimasu-main))',
           sub1: 'hsl(var(--daimasu-sub1))',
@@ -44,9 +55,12 @@ module.exports = {
           black: 'hsl(var(--daimasu-black))'
         },
         gold: {
-          DEFAULT: '#D4AF37',
-          dark: '#B8862A',
-          muted: '#8A7A5A'
+          DEFAULT: 'hsl(var(--gold-500))',
+          300: 'hsl(var(--gold-300))',
+          500: 'hsl(var(--gold-500))',
+          // Backwards-compat aliases used in existing components
+          dark: 'hsl(var(--gold-500))',
+          muted: 'hsl(var(--gold-500))'
         },
         primary: {
           DEFAULT: 'hsl(var(--primary))',

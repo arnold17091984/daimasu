@@ -79,7 +79,10 @@ export default function HeroSection({content}: Props) {
                 {tagline}
               </p>
 
-              <div className="mt-8 mb-6 w-[101px] h-[6px] bg-[#FF4040] mx-auto" />
+              <div
+                aria-hidden="true"
+                className="mt-8 mb-6 w-[64px] h-px bg-gold-500 mx-auto"
+              />
 
               {/* Description */}
               <p className="font-poppins font-normal text-sm md:text-base text-white leading-[1.44] tracking-[0.02em] max-w-[458px] mb-8">

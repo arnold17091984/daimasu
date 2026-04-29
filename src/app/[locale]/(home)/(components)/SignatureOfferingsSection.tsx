@@ -138,7 +138,7 @@ export default function SignatureOfferingsSection({
       </div>
 
       {/* Section 2: The Story Sake Performs */}
-      <div className="relative min-h-[700px] lg:min-h-[800px] overflow-hidden bg-[#FFEFD3]">
+      <div className="relative min-h-[700px] lg:min-h-[800px] overflow-hidden bg-washi-100">
         {/* Gold Pattern Background */}
         <div className="absolute left-0 top-0 bottom-0 w-full lg:w-3/4">
           <Image

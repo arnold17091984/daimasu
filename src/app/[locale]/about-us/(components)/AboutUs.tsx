@@ -140,7 +140,10 @@ export default function AboutUs({content}: Props) {
                 {heroSubtitle}
               </p>
               {/* Red accent line */}
-              <div className="w-[101px] h-[6px] bg-[#FF4040] my-6 mx-auto" />
+              <div
+                aria-hidden="true"
+                className="w-[64px] h-px bg-gold-500 my-6 mx-auto"
+              />
               <p className="text-base md:text-lg font-poppins leading-relaxed mb-8 max-w-md">
                 {heroDescription}
               </p>
@@ -177,7 +180,7 @@ export default function AboutUs({content}: Props) {
       </div>
 
       {/* About Us Content Section - At Daimasu - Gray Background */}
-      <div className="relative bg-[#F6F6F6]">
+      <div className="relative bg-washi-50">
         <div className="py-16 md:py-24 px-4 sm:px-8 max-w-7xl mx-auto">
           {/* About Us Title */}
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-bold font-playfair text-black text-center mb-10 md:mb-24">
@@ -213,7 +216,7 @@ export default function AboutUs({content}: Props) {
       </div>
 
       {/* Crafted with Precision Section - Cream Background */}
-      <div className="relative bg-[#FFEBC8] overflow-hidden">
+      <div className="relative bg-washi-100 overflow-hidden">
         {/* Background Texture */}
         <div className="absolute inset-0">
           <Image

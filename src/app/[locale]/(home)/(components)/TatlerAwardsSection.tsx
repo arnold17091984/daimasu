@@ -29,9 +29,9 @@ export default function TatlerAwardsSection({content}: Props) {
   const japaneseText = content?.japaneseText || t('tatler_japanese');
 
   return (
-    <section className="relative w-full bg-[#FFEFD3] overflow-hidden">
+    <section className="relative w-full bg-washi-50 overflow-hidden">
       {/* Background Color + Texture */}
-      <div className="absolute inset-0 bg-[#FFEFD3]">
+      <div className="absolute inset-0 bg-washi-50">
         <Image
           src="/homepage/tatler-texture-2.png"
           alt=""
@@ -79,7 +79,7 @@ export default function TatlerAwardsSection({content}: Props) {
           <div className="flex items-start justify-end gap-4 lg:gap-6 flex-1 min-w-0">
             <div className="flex-1 min-w-0 max-w-[460px] text-center lg:text-right">
               {/* Main Title */}
-              <h2 className="font-shippori font-extrabold text-2xl md:text-3xl lg:text-[40px] text-[#542201] tracking-[0.02em] leading-tight md:leading-tight lg:!leading-[1.35] mb-4 lg:mb-6 lg:break-keep-all whitespace-pre-line">
+              <h2 className="font-shippori font-extrabold text-2xl md:text-3xl lg:text-[40px] text-ink-900 tracking-[0.02em] leading-tight md:leading-tight lg:!leading-[1.35] mb-4 lg:mb-6 lg:break-keep-all whitespace-pre-line">
                 {title}
               </h2>
 

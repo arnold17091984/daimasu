@@ -10,36 +10,47 @@ const buttonVariants = cva(
     variants: {
       variant: {
         // Default shadcn variants
-        default: 'bg-primary text-primary-foreground shadow hover:bg-primary/90',
+        default:
+          'bg-primary text-primary-foreground shadow hover:bg-primary/90',
         destructive:
           'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
         outline:
           'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground',
-        secondary: 'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/90',
+        secondary:
+          'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/90',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
 
-        // Daimasu variants
+        // ─── Phase 1 luxury variants ────────────────────────────────
+        // The previous filled-red CTAs read as "ramen counter". These
+        // ghost-outline-with-gold variants land in the kaiseki / Tatler
+        // band. Variant names are kept (`daimasu-red`, `daimasu-orange`)
+        // so existing call sites don't have to be touched.
+        // ----------------------------------------------------------------
         'daimasu-main':
-          'bg-daimasu-main text-white shadow-sm hover:bg-daimasu-main/90 font-poppins font-bold',
+          'bg-ink-900 text-washi-50 hover:bg-ink-700 transition-colors font-poppins font-medium tracking-[0.06em]',
+        // Primary CTA: ink-fill with gold text + gold hairline border. Reads
+        // as a kaiseki seal on both light (washi-50) and dark (hero / black
+        // membership / footer) surfaces — replaces the legacy filled red.
         'daimasu-red':
-          'bg-daimasu-red text-white shadow-[0px_4px_9.4px_0px_rgba(0,0,0,0.5)] hover:bg-daimasu-red/90 font-poppins font-bold',
+          'bg-ink-900 text-gold-300 border border-gold-500 hover:bg-ink-700 hover:text-gold-300 transition-colors font-poppins font-medium tracking-[0.08em] uppercase',
+        // Secondary CTA on dark surfaces — pure ghost outline in gold.
         'daimasu-orange':
-          'bg-daimasu-accent3 text-white shadow-sm hover:bg-daimasu-accent3/90 font-poppins font-bold',
+          'bg-transparent text-gold-300 border border-gold-500 hover:bg-gold-500 hover:text-ink-900 transition-colors font-poppins font-medium tracking-[0.08em] uppercase',
         'daimasu-cream':
-          'bg-daimasu-sub2 text-daimasu-main shadow-sm hover:bg-daimasu-sub2/90 font-poppins font-bold',
+          'bg-washi-50 text-ink-900 border border-ink-900/20 hover:bg-washi-100 transition-colors font-poppins font-medium tracking-[0.06em]',
         'daimasu-olive':
-          'bg-daimasu-accent2 text-white shadow-sm hover:bg-daimasu-accent2/90 font-poppins font-bold',
+          'bg-transparent text-gold-500 border border-gold-500/60 hover:border-gold-500 hover:text-gold-300 transition-colors font-poppins font-medium tracking-[0.06em]',
         'daimasu-outline':
-          'border-2 border-daimasu-main bg-transparent text-daimasu-main hover:bg-daimasu-main hover:text-white font-poppins font-bold',
+          'border border-ink-900 bg-transparent text-ink-900 hover:bg-ink-900 hover:text-washi-50 transition-colors font-poppins font-medium tracking-[0.08em] uppercase',
         'daimasu-outline-red':
-          'border-2 border-daimasu-red bg-transparent text-daimasu-red hover:bg-daimasu-red hover:text-white font-poppins font-bold',
+          'border border-gold-500 bg-transparent text-ink-900 hover:bg-gold-500 hover:text-ink-900 transition-colors font-poppins font-medium tracking-[0.08em] uppercase',
         'daimasu-outline-orange':
-          'border-2 border-daimasu-accent3 bg-transparent text-daimasu-accent3 hover:bg-daimasu-accent3 hover:text-white font-poppins font-bold',
+          'border border-gold-500 bg-transparent text-gold-500 hover:bg-gold-500 hover:text-ink-900 transition-colors font-poppins font-medium tracking-[0.08em] uppercase',
         'daimasu-ghost':
-          'bg-transparent text-daimasu-main hover:bg-daimasu-sub2/50 font-poppins font-bold',
+          'bg-transparent text-ink-900 hover:text-gold-500 transition-colors font-poppins font-medium tracking-[0.06em]',
         'daimasu-ghost-light':
-          'bg-transparent text-white hover:bg-white/10 font-poppins font-bold',
+          'bg-transparent text-washi-50 hover:text-gold-300 transition-colors font-poppins font-medium tracking-[0.06em]',
 
         // Legacy
         menu_filter: 'bg-black text-muted !h-[40px]'

@@ -62,7 +62,7 @@ export default function OurMenu({
               key={item?.id}
               className={cn(
                 `px-4 rounded-md text-xs sm:text-sm md:text-base transition min-w-[100px] sm:min-w-[120px] md:min-w-full`,
-                setName === item?.name && 'bg-[#FFB548] text-black'
+                setName === item?.name && 'bg-gold-500 text-ink-900'
               )}
               onClick={() => setSetName(item?.name)}
             >
@@ -80,7 +80,7 @@ export default function OurMenu({
                 key={item?.id}
                 className={cn(
                   `px-5 rounded-md text-xs sm:text-sm md:text-base font-medium transition`,
-                  typeName === item?.name && 'bg-[#FFB548] text-black'
+                  typeName === item?.name && 'bg-gold-500 text-ink-900'
                 )}
                 onClick={() => setTypeName(item?.name)}
               >

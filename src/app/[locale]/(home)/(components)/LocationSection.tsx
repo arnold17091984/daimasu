@@ -36,7 +36,7 @@ export default function LocationSection({content}: Props) {
   const addressLines = address.split('\n');
 
   return (
-    <section className="relative w-full bg-[#FFEFD3] overflow-hidden">
+    <section className="relative w-full bg-washi-50 overflow-hidden">
       {/* Background Texture */}
       <div className="absolute inset-0">
         <Image

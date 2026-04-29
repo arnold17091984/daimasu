@@ -10,7 +10,9 @@ interface IClientProvider {
 const ClientProviders: React.FC<IClientProvider> = ({children}) => {
   return (
     <NuqsAdapter>
-      <NextTopLoader showSpinner={false} color="#9E0000" />
+      {/* Top loader uses our muted antique gold so the page-load progress
+          bar matches the luxury palette instead of the legacy red. */}
+      <NextTopLoader showSpinner={false} color="#B19463" />
       {children}
     </NuqsAdapter>
   );

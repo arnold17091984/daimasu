@@ -92,7 +92,7 @@ function VIPRoomCard({
   };
 
   return (
-    <div className="bg-[#F6F6F6] rounded-[21px] p-6 md:p-8 lg:p-10 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.4)]">
+    <div className="bg-washi-50 rounded-[21px] p-6 md:p-8 lg:p-10 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.4)]">
       <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
         {/* Left: Image Gallery */}
         <div className="w-full lg:w-auto lg:flex-shrink-0">
@@ -314,7 +314,7 @@ export default function OurRooms({content}: Props) {
                   {heroSubtitle}
                 </p>
                 <div
-                  className="my-6 mx-0 w-[80px] md:w-[101px] h-[3px] md:h-[6px] bg-[#FF4040]"
+                  className="my-6 mx-0 w-[56px] md:w-[64px] h-px bg-gold-500"
                   aria-hidden="true"
                 />
                 <p className="text-sm sm:text-base md:text-[16px] font-poppins font-normal text-white/90 leading-[1.6] tracking-[0.02em] max-w-[497px]">
@@ -343,9 +343,9 @@ export default function OurRooms({content}: Props) {
       </div>
 
       {/* Room Details Section */}
-      <div className="relative bg-[#FFEFD3] overflow-hidden">
+      <div className="relative bg-washi-50 overflow-hidden">
         {/* Background Color + Texture */}
-        <div className="absolute inset-0 bg-[#FFEFD3]">
+        <div className="absolute inset-0 bg-washi-50">
           <Image
             src="/homepage/tatler-texture-2.png"
             alt=""
@@ -362,7 +362,7 @@ export default function OurRooms({content}: Props) {
           <h2 className="text-2xl sm:text-3xl md:text-[36px] font-bold text-black font-poppins mb-8 text-center">
             {layoutFlowTitle}
           </h2>
-          <div className="bg-[#F6F6F6] rounded-[11px] p-6 md:p-8 lg:p-10 mb-16 md:mb-24">
+          <div className="bg-washi-50 rounded-[11px] p-6 md:p-8 lg:p-10 mb-16 md:mb-24">
             {/* Main 3D Floor Plan Image */}
             <div className="relative w-full max-w-3xl mx-auto mb-6">
               <Image
