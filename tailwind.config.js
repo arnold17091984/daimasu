@@ -107,6 +107,17 @@ module.exports = {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)'
+      },
+      // Phase 2 spacing system: standardise section vertical rhythm so
+      // luxury houses' breathing room becomes the default. Existing
+      // py-16 / py-24 are kept for components that haven't been migrated.
+      spacing: {
+        'section-y': '8rem',
+        'section-y-sm': '4rem'
+      },
+      maxWidth: {
+        reading: '38rem',
+        shell: '80rem'
       }
     }
   },

@@ -6,7 +6,7 @@ import {shippori} from '@/lib/fonts';
 import {useTranslations} from 'next-intl';
 import {useMenuQueries} from './OurMenuQueries';
 import OurMenuGrid from './OurMenuGrid';
-import {Button} from '@/components/ui/button';
+import {Button, buttonVariants} from '@/components/ui/button';
 
 export default function OurMenu({
   sets,
@@ -25,20 +25,47 @@ export default function OurMenu({
     resetFilters
   } = useMenuQueries();
 
-  // When the upstream menu API is unreachable (e.g. env vars not configured)
-  // the page would otherwise render a broken sidebar with no items. Surface a
-  // calm empty state under the localised header instead.
+  // Phase 2.3 — Daimasu does not publish a fixed menu. Each evening the
+  // chef builds a course around the day's catch + season; this page is the
+  // "Reservations open the menu" message rather than a list of items. The
+  // condition (no items + no types) covers both the no-CMS dev path and
+  // the production reality that there is intentionally no item catalogue.
   if (sets.length === 0 && types.length === 0) {
     return (
-      <section className="text-white py-16 min-h-[400px] max-w-[1440px] w-full mx-auto px-4 text-center">
-        <h1
-          className={cn('text-[2.5rem] mb-6 antialiased', shippori.className)}
-        >
-          {t('daimasu_specials')}
-        </h1>
-        <p className="text-base md:text-lg text-white/80 max-w-xl mx-auto">
-          {t('enjoy_our_array_of')}
-        </p>
+      <section className="bg-washi-50 py-section-y-sm md:py-section-y px-4 min-h-[60vh] flex items-center">
+        <div className="max-w-reading mx-auto text-center text-ink-900">
+          <p className="font-poppins text-[11px] tracking-[0.3em] uppercase text-gold-500 mb-6">
+            {t('our_menu')}
+          </p>
+          <h1
+            className={cn(
+              'font-playfair text-3xl md:text-5xl mb-8 leading-tight',
+              shippori.className
+            )}
+          >
+            {t('menu_interim_title')}
+          </h1>
+          <div
+            aria-hidden="true"
+            className="mx-auto mb-8 h-px w-16 bg-gold-500"
+          />
+          <p className="font-shippori text-base md:text-lg leading-[1.8] text-ink-900/80 mb-10">
+            {t('menu_interim_body')}
+          </p>
+          {/* Reservation entry point. Phase 3 will swap this for a real
+              deposit-holding booking flow; until then the rest of the
+              site treats Messenger as the booking surface, so we match. */}
+          <a
+            href="https://m.me/daimasujapaneserestaurant"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(
+              buttonVariants({variant: 'daimasu-red', size: 'daimasu-lg'})
+            )}
+          >
+            {t('menu_interim_cta')}
+          </a>
+        </div>
       </section>
     );
   }
