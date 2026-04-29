@@ -1,4 +1,18 @@
 import localFont from 'next/font/local';
+import {Cormorant_Garamond, Inter} from 'next/font/google';
+
+// Phase 1B luxury type system. The site reduces from six families to three:
+//   1. Cormorant Garamond — Latin display (kaiseki gravitas instead of
+//      Playfair's fashion-magazine bounce)
+//   2. Inter             — humanist sans body (replaces Poppins's
+//      geometric-SaaS roundness)
+//   3. Shippori Mincho B1 — single Japanese serif used for both vertical
+//      and horizontal CJK contexts (eliminates Zen Old Mincho)
+//
+// Existing components use legacy class names (font-playfair, font-poppins,
+// font-mplus, font-zen-old-mincho). Those classes are remapped in
+// styles.css to point at these new variables, so no component edits are
+// required for the visual swap.
 
 const shippori = localFont({
   src: [
@@ -29,52 +43,18 @@ const shippori = localFont({
   fallback: ['serif']
 });
 
-const mplus = localFont({
-  src: [
-    {
-      path: './fonts/mplus/Mplus1p-Regular.woff2',
-      weight: '400',
-      style: 'normal'
-    },
-    {
-      path: './fonts/mplus/Mplus1p-Medium.woff2',
-      weight: '500',
-      style: 'normal'
-    },
-    {
-      path: './fonts/mplus/Mplus1p-Bold.woff2',
-      weight: '700',
-      style: 'normal'
-    }
-  ],
-  variable: '--font-mplus',
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-display',
   display: 'swap',
-  fallback: ['sans-serif']
+  fallback: ['Georgia', 'serif']
 });
-const poppins = localFont({
-  src: [
-    {
-      path: './fonts/poppins/Poppins-Regular.woff2',
-      weight: '400',
-      style: 'normal'
-    },
-    {
-      path: './fonts/poppins/Poppins-Medium.woff2',
-      weight: '500',
-      style: 'normal'
-    },
-    {
-      path: './fonts/poppins/Poppins-SemiBold.woff2',
-      weight: '600',
-      style: 'normal'
-    },
-    {
-      path: './fonts/poppins/Poppins-Bold.woff2',
-      weight: '700',
-      style: 'normal'
-    }
-  ],
-  variable: '--font-poppins',
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-body',
   display: 'swap',
   fallback: [
     'system-ui',
@@ -86,4 +66,4 @@ const poppins = localFont({
   ]
 });
 
-export {shippori, mplus, poppins};
+export {shippori, cormorant, inter};

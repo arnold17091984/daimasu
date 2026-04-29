@@ -1,5 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Zen+Old+Mincho:wght@400;500;600;700&display=swap');
-
+/* Phase 1B: Playfair + Zen Old Mincho external @import retired in favour of
+ * next/font (Cormorant Garamond + Inter) loaded in src/lib/fonts.ts.
+ * Removing the blocking <link> + cutting two display families from the
+ * loading critical path. Shippori Mincho still serves Japanese glyphs. */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -135,21 +137,34 @@
   }
 }
 
-/* Font Family Classes
- * For each Latin display font we layer a Japanese fallback so CJK glyphs
- * use the bundled Japanese family instead of OS defaults. Browsers do
- * per-glyph fallback, so Latin still resolves to the primary face.
- */
-.font-poppins {
-  /* Latin glyphs render with Poppins (modern sans). Browsers fall back per
-   * glyph, so Japanese characters resolve to Shippori Mincho — matching the
-   * elegant brand voice instead of the OS default Gothic. */
+/* ============================================================================
+ * Phase 1B — three-family luxury type system
+ *
+ * Components reference legacy class names (font-poppins, font-shippori,
+ * font-mplus, font-zen-old-mincho, font-playfair) at 175 call sites. Rather
+ * than rewriting every reference, those classes are remapped here to point
+ * at the new font variables. This keeps the diff small and reversible.
+ *
+ * Mapping:
+ *   .font-playfair       → Cormorant Garamond  (Latin display, kaiseki)
+ *   .font-shippori       → Shippori Mincho B1  (JP serif, headlines)
+ *   .font-zen-old-mincho → Shippori Mincho B1  (no longer two Mincho faces)
+ *   .font-poppins        → Inter               (Latin body, neutral humanist)
+ *   .font-mplus          → Inter               (Latin body fallback)
+ *
+ * Browsers do per-glyph fallback, so Latin glyphs still hit the primary
+ * Latin face (Cormorant or Inter) and CJK glyphs cascade to Shippori,
+ * Hiragino, Yu Mincho.
+ * ============================================================================ */
+
+.font-playfair {
+  /* Latin display: Cormorant Garamond. CJK falls back to Shippori. */
   font-family:
-    var(--font-poppins),
+    var(--font-display),
     var(--font-shippori),
     'Hiragino Mincho ProN',
     'Yu Mincho',
-    system-ui,
+    Georgia,
     serif;
 }
 
@@ -161,28 +176,57 @@
     serif;
 }
 
-.font-mplus {
+.font-zen-old-mincho {
+  /* Retired Zen Old Mincho — fall through to Shippori for a single
+   * coherent JP serif system. */
   font-family:
-    var(--font-mplus),
-    'Hiragino Kaku Gothic ProN',
-    'Yu Gothic',
+    var(--font-shippori),
+    'Hiragino Mincho ProN',
+    'Yu Mincho',
+    serif;
+}
+
+.font-poppins {
+  /* Latin body: Inter. CJK glyphs cascade to Shippori for tone match. */
+  font-family:
+    var(--font-body),
+    var(--font-shippori),
+    'Hiragino Mincho ProN',
+    'Yu Mincho',
+    system-ui,
     sans-serif;
 }
 
-.font-zen-old-mincho {
+.font-mplus {
+  /* M PLUS retired in favour of Inter; CJK still falls through to a
+   * Mincho stack so signage doesn't suddenly switch to Gothic. */
   font-family:
-    'Zen Old Mincho',
+    var(--font-body),
     var(--font-shippori),
     'Hiragino Mincho ProN',
     'Yu Mincho',
+    system-ui,
+    sans-serif;
+}
+
+/* New display class for new-build components — same as font-playfair but
+ * named for the post-migration design language. */
+.font-display {
+  font-family:
+    var(--font-display),
+    var(--font-shippori),
+    'Hiragino Mincho ProN',
+    'Yu Mincho',
+    Georgia,
     serif;
 }
 
-.font-playfair {
+.font-body {
   font-family:
-    'Playfair Display',
+    var(--font-body),
     var(--font-shippori),
     'Hiragino Mincho ProN',
     'Yu Mincho',
-    serif;
+    system-ui,
+    sans-serif;
 }

@@ -7,7 +7,7 @@ import type {Metadata} from 'next';
 import {routing} from '@/i18n/routing';
 import {host} from '@/config';
 import './styles.css';
-import {mplus, poppins, shippori} from '@/lib/fonts';
+import {cormorant, inter, shippori} from '@/lib/fonts';
 import NextTopLoader from 'nextjs-toploader';
 import ClientProviders from '@/components/ClientProviders';
 import Script from 'next/script';
@@ -197,10 +197,9 @@ export default async function LocaleLayout({children, params}: Props) {
       </head>
       <body
         className={clsx(
-          // inter.className,
           shippori.variable,
-          mplus.variable,
-          poppins.variable,
+          cormorant.variable,
+          inter.variable,
           'flex h-full flex-col'
         )}
       >

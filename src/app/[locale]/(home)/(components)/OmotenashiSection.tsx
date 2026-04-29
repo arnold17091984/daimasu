@@ -1,5 +1,5 @@
 'use client';
-import {poppins, shippori} from '@/lib/fonts';
+import {inter as poppins, shippori} from '@/lib/fonts';
 import {cn} from '@/lib/utils';
 import {useTranslations} from 'next-intl';
 import Image from 'next/image';
