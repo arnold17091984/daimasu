@@ -1,5 +1,4 @@
-'use client';
-import {inter as poppins, shippori} from '@/lib/fonts';
+import {inter, shippori} from '@/lib/fonts';
 import {cn} from '@/lib/utils';
 import {useTranslations} from 'next-intl';
 import Image from 'next/image';
@@ -70,7 +69,7 @@ export default function OmotenashiSection() {
         </div>
 
         {/* Descriptive Paragraph */}
-        <div className={cn('px-3 text-center mt-5 mb-4', poppins.className)}>
+        <div className={cn('px-3 text-center mt-5 mb-4', inter.className)}>
           <p className="text-[12px] sm:text-[18px] md:text-[18px] leading-[1.7] tracking-[0.02em] font-poppins text-black max-w-[95%] sm:max-w-[1019px] mx-auto font-normal">
             {t('at_the_restaurant')} {t('with_this_in_mind')}{' '}
             {t('the_concept_of_omotenashi')}

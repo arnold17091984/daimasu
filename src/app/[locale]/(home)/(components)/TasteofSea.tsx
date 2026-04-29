@@ -1,4 +1,3 @@
-'use client';
 import {Button} from '@/components/ui/button';
 import {shippori} from '@/lib/fonts';
 import {cn} from '@/lib/utils';

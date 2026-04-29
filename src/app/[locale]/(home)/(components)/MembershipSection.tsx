@@ -1,5 +1,3 @@
-'use client';
-
 import {buttonVariants} from '@/components/ui/button';
 import {Link} from '@/i18n/navigation';
 import type {LinkHref} from '@/lib/typed-link';

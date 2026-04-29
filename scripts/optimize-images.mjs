@@ -1,19 +1,28 @@
 #!/usr/bin/env node
 /**
- * Pre-optimise the largest PNG/JPG source assets in /public.
- *  - Resizes images wider than 2560px to fit (lanczos)
- *  - Re-encodes PNG with Sharp's modern compressor (no quality loss)
- *  - Skips files already small enough
+ * Pre-optimise source assets in /public for the luxury site.
+ *
+ *   1. Resize anything wider than MAX_WIDTH (1920px) — luxury hero photos
+ *      don't need 4K originals; next/image will downscale per breakpoint
+ *      anyway, so storing 4K wastes ~70% of the bytes.
+ *   2. Re-encode PNG with palette + max compression. For very large or
+ *      photographic PNGs the palette mode loses detail, so we fall back
+ *      to lossless `compressionLevel: 9` for those.
+ *   3. Re-encode JPG with mozjpeg quality 82, progressive.
+ *
+ *   AVIF / WebP variants are generated on-demand by next/image at
+ *   request time (next.config.ts already enables both formats with a
+ *   one-year cache TTL). We only optimise the originals here.
  *
  * Run: node scripts/optimize-images.mjs
  */
-import {readdir, stat, rename} from 'node:fs/promises';
+import {readdir, stat, rename, unlink} from 'node:fs/promises';
 import {join, extname} from 'node:path';
 import sharp from 'sharp';
 
 const ROOT = new URL('../public/', import.meta.url).pathname;
-const MAX_WIDTH = 2560;
-const MIN_BYTES = 500_000; // skip files under 500KB
+const MAX_WIDTH = 1920;
+const MIN_BYTES = 200_000; // skip files under 200KB
 const exts = new Set(['.png', '.jpg', '.jpeg']);
 
 async function* walk(dir) {
@@ -32,18 +41,29 @@ for await (const file of walk(ROOT)) {
   if (before < MIN_BYTES) continue;
 
   const tmp = `${file}.opt.tmp`;
-  const img = sharp(file);
-  const meta = await img.metadata();
+  const meta = await sharp(file).metadata();
   const targetWidth =
     meta.width && meta.width > MAX_WIDTH ? MAX_WIDTH : null;
 
   let pipeline = sharp(file);
   if (targetWidth) {
-    pipeline = pipeline.resize({width: targetWidth, withoutEnlargement: true, fit: 'inside'});
+    pipeline = pipeline.resize({
+      width: targetWidth,
+      withoutEnlargement: true,
+      fit: 'inside'
+    });
   }
 
   if (file.endsWith('.png')) {
-    pipeline = pipeline.png({compressionLevel: 9, palette: true, effort: 9});
+    // Photographic PNGs do badly under palette mode (banding, dithering
+    // artefacts on skin). Files >2MB are almost always photos at this
+    // size, so use lossless compressionLevel 9 there. Smaller PNGs are
+    // typically icons/logos and survive palette mode fine.
+    if (before > 2_000_000) {
+      pipeline = pipeline.png({compressionLevel: 9, effort: 10});
+    } else {
+      pipeline = pipeline.png({compressionLevel: 9, palette: true, effort: 10});
+    }
   } else {
     pipeline = pipeline.jpeg({quality: 82, progressive: true, mozjpeg: true});
   }
@@ -59,9 +79,7 @@ for await (const file of walk(ROOT)) {
       `${file.replace(ROOT, '')}  ${(before / 1024).toFixed(0)}KB → ${(after / 1024).toFixed(0)}KB  (${((1 - after / before) * 100).toFixed(0)}% smaller${targetWidth ? `, resized to ${targetWidth}px` : ''})`
     );
   } else {
-    await rename(tmp, file + '.discard'); // safety: always remove temp
-    const {unlink} = await import('node:fs/promises');
-    await unlink(file + '.discard').catch(() => {});
+    await unlink(tmp).catch(() => {});
   }
 }
 

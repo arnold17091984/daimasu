@@ -1,5 +1,3 @@
-'use client';
-
 import {buttonVariants} from '@/components/ui/button';
 import {cn} from '@/lib/utils';
 import {useLocale, useTranslations} from 'next-intl';
@@ -65,14 +63,14 @@ export default function HeroSection({content}: Props) {
             {/* Left Content - English Text */}
             <div className="max-w-[763px]">
               {/* Subtitle Question */}
-              <h2 className="font-playfair font-bold text-2xl md:text-4xl lg:text-[48px] md:leading-[3rem] text-white tracking-[0.02em] mb-4">
+              <h1 className="font-playfair font-bold text-2xl md:text-4xl lg:text-[48px] md:leading-[3rem] text-white tracking-[0.02em] mb-4">
                 {subtitleLines.map((line, index) => (
                   <span key={index}>
                     {line}
                     {index < subtitleLines.length - 1 && <br />}
                   </span>
                 ))}
-              </h2>
+              </h1>
 
               {/* Main Tagline */}
               <p className="font-poppins font-medium text-lg md:text-xl lg:text-2xl text-white tracking-[0.01em] mb-6">
