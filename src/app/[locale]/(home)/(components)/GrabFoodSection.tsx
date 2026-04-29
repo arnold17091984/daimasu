@@ -46,7 +46,7 @@ export default function GrabFoodSection({content}: Props) {
       <div className="relative z-10 max-w-[1440px] mx-auto px-4 md:px-8 lg:px-16 py-16 md:py-24">
         <div className="max-w-xl flex flex-col items-center">
           {/* Title */}
-          <h2 className="font-shippori font-bold text-4xl md:text-6xl text-white leading-tight mb-6 break-keep-all">
+          <h2 className="font-shippori font-bold text-4xl md:text-6xl text-white leading-tight mb-6 lg:break-keep-all">
             {title}
           </h2>
 

@@ -14,6 +14,7 @@ messages/en.d.json.ts
 
 # QA screenshots — local-only review artefacts
 /qa/
+/qa-mobile/
 /lighthouse-*.html
 /lighthouse-*.json
 

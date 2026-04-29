@@ -302,7 +302,7 @@ export default function OurRooms({content}: Props) {
           <div className="w-full max-w-[1036px] mx-auto md:mx-0 px-6 md:pr-16 lg:pr-24 md:ml-auto">
             <div className="flex flex-col md:flex-row md:items-start gap-8 md:gap-12 lg:gap-16">
               <div className="max-w-[521px] text-left">
-                <h1 className="text-3xl sm:text-4xl md:text-[48px] font-bold font-playfair text-white md:leading-[3rem] tracking-[0.02em] break-keep-all">
+                <h1 className="text-3xl sm:text-4xl md:text-[48px] font-bold font-playfair text-white md:leading-[3rem] tracking-[0.02em] lg:break-keep-all">
                   {heroTitleLines.map((line, index) => (
                     <span key={`${line}-${index}`}>
                       {line}
@@ -317,7 +317,7 @@ export default function OurRooms({content}: Props) {
                   className="my-6 mx-0 w-[80px] md:w-[101px] h-[3px] md:h-[6px] bg-[#FF4040]"
                   aria-hidden="true"
                 />
-                <p className="text-sm sm:text-base md:text-[16px] font-poppins font-normal text-white/90 leading-[1.6] tracking-[0.02em] max-w-[497px] break-keep-all">
+                <p className="text-sm sm:text-base md:text-[16px] font-poppins font-normal text-white/90 leading-[1.6] tracking-[0.02em] max-w-[497px]">
                   {heroDescription}
                 </p>
               </div>

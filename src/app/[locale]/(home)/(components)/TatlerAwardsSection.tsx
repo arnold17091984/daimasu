@@ -79,12 +79,12 @@ export default function TatlerAwardsSection({content}: Props) {
           <div className="flex items-start justify-end gap-4 lg:gap-6 flex-1 min-w-0">
             <div className="flex-1 min-w-0 max-w-[460px] text-center lg:text-right">
               {/* Main Title */}
-              <h2 className="font-shippori font-extrabold text-2xl md:text-3xl lg:text-[40px] text-[#542201] tracking-[0.02em] leading-tight md:leading-tight lg:!leading-[1.35] mb-4 lg:mb-6 break-keep-all whitespace-pre-line">
+              <h2 className="font-shippori font-extrabold text-2xl md:text-3xl lg:text-[40px] text-[#542201] tracking-[0.02em] leading-tight md:leading-tight lg:!leading-[1.35] mb-4 lg:mb-6 lg:break-keep-all whitespace-pre-line">
                 {title}
               </h2>
 
               {/* Description */}
-              <p className="text-black font-shippori text-sm md:text-base lg:text-lg leading-[1.7] tracking-[0.02em] break-keep-all">
+              <p className="text-black font-shippori text-sm md:text-base lg:text-lg leading-[1.7] tracking-[0.02em]">
                 {description}
               </p>
             </div>

@@ -112,7 +112,7 @@ export default function SignatureOfferingsSection({
             {/* Content */}
             <div className="flex items-start gap-4 lg:gap-6">
               <div className="max-w-[450px] text-center lg:text-right">
-                <h3 className="font-shippori font-bold text-3xl md:text-4xl lg:text-[44px] text-black leading-tight md:leading-tight lg:!leading-[1.3] mb-4 break-keep-all">
+                <h3 className="font-shippori font-bold text-3xl md:text-4xl lg:text-[44px] text-black leading-tight md:leading-tight lg:!leading-[1.3] mb-4 lg:break-keep-all">
                   {artTitleLines.map((line, index) => (
                     <span key={index}>
                       {line}
@@ -120,7 +120,7 @@ export default function SignatureOfferingsSection({
                     </span>
                   ))}
                 </h3>
-                <p className="text-black font-shippori text-sm md:text-base lg:text-[16px] leading-[1.7] break-keep-all">
+                <p className="text-black font-shippori text-sm md:text-base lg:text-[16px] leading-[1.7]">
                   {artDescription}
                 </p>
               </div>
@@ -168,7 +168,7 @@ export default function SignatureOfferingsSection({
             {/* Content */}
             <div className="flex items-start gap-4 lg:gap-6">
               <div className="max-w-[450px] text-center lg:text-right">
-                <h3 className="font-shippori font-bold text-3xl md:text-4xl lg:text-[44px] text-black leading-tight md:leading-tight lg:!leading-[1.3] mb-4 break-keep-all">
+                <h3 className="font-shippori font-bold text-3xl md:text-4xl lg:text-[44px] text-black leading-tight md:leading-tight lg:!leading-[1.3] mb-4 lg:break-keep-all">
                   {sakeTitleLines.map((line, index) => (
                     <span key={index}>
                       {line}
@@ -176,7 +176,7 @@ export default function SignatureOfferingsSection({
                     </span>
                   ))}
                 </h3>
-                <p className="text-black font-shippori text-sm md:text-base lg:text-[16px] leading-[1.7] break-keep-all mb-6">
+                <p className="text-black font-shippori text-sm md:text-base lg:text-[16px] leading-[1.7] mb-6">
                   {sakeDescription}
                 </p>
                 <Link
@@ -236,10 +236,10 @@ export default function SignatureOfferingsSection({
             {/* Content */}
             <div className="flex items-start gap-4 lg:gap-6">
               <div className="max-w-[450px] text-center lg:text-right">
-                <h3 className="font-shippori font-bold text-3xl md:text-4xl lg:text-[44px] text-black leading-tight md:leading-tight lg:!leading-[1.3] mb-4 break-keep-all">
+                <h3 className="font-shippori font-bold text-3xl md:text-4xl lg:text-[44px] text-black leading-tight md:leading-tight lg:!leading-[1.3] mb-4 lg:break-keep-all">
                   {quietTitle}
                 </h3>
-                <p className="text-black font-shippori text-sm md:text-base lg:text-[16px] leading-[1.7] break-keep-all mb-6">
+                <p className="text-black font-shippori text-sm md:text-base lg:text-[16px] leading-[1.7] mb-6">
                   {quietDescription}
                 </p>
                 <Link

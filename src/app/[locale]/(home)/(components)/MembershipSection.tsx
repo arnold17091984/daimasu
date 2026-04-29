@@ -66,7 +66,7 @@ export default function MembershipSection({content}: Props) {
             </div>
 
             {/* Title */}
-            <h2 className="font-playfair font-bold text-2xl md:text-3xl lg:text-4xl text-white leading-tight md:leading-tight lg:!leading-[1.3] tracking-[0.02em] mb-6 break-keep-all">
+            <h2 className="font-playfair font-bold text-2xl md:text-3xl lg:text-4xl text-white leading-tight md:leading-tight lg:!leading-[1.3] tracking-[0.02em] mb-6 lg:break-keep-all">
               {titleLines.map((line, index) => (
                 <span key={index}>
                   {line}

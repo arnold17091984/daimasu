@@ -263,7 +263,7 @@ export default function Membership({content}: Readonly<Props>) {
               <p className="font-poppins text-[11px] tracking-[0.3em] uppercase text-gold mb-6">
                 {t('membership_eyebrow')}
               </p>
-              <h1 className="font-playfair font-bold text-[40px] sm:text-[56px] lg:text-[68px] leading-[1.05] tracking-tight break-keep-all">
+              <h1 className="font-playfair font-bold text-[40px] sm:text-[56px] lg:text-[68px] leading-[1.05] tracking-tight lg:break-keep-all">
                 {titleLines.map((line, i) => (
                   <span key={`${line}-${i}`} className="block">
                     {line}
@@ -340,7 +340,7 @@ export default function Membership({content}: Readonly<Props>) {
                 </span>
               ))}
             </h2>
-            <p className="mt-8 font-shippori text-[16px] lg:text-[17px] leading-[1.9] text-white/75 max-w-[520px] break-keep-all">
+            <p className="mt-8 font-shippori text-[16px] lg:text-[17px] leading-[1.9] text-white/75 max-w-[520px]">
               {programConceptDescription}
             </p>
           </div>
@@ -852,7 +852,7 @@ export default function Membership({content}: Readonly<Props>) {
                 <h3 className="font-shippori font-bold text-[20px] text-white mb-3 leading-[1.4]">
                   {t(titleKey)}
                 </h3>
-                <p className="font-poppins text-[13px] text-white/55 leading-[1.7] break-keep-all">
+                <p className="font-poppins text-[13px] text-white/55 leading-[1.7]">
                   {t(descKey)}
                 </p>
               </div>
@@ -930,7 +930,7 @@ export default function Membership({content}: Readonly<Props>) {
                 <h3 className="mt-5 font-playfair font-bold text-[22px] lg:text-[26px] text-white leading-[1.3]">
                   {t(titleKey)}
                 </h3>
-                <p className="mt-3 font-poppins text-[14px] lg:text-[15px] text-white/65 leading-[1.7] break-keep-all">
+                <p className="mt-3 font-poppins text-[14px] lg:text-[15px] text-white/65 leading-[1.7]">
                   {t(descKey)}
                 </p>
               </div>
@@ -961,7 +961,7 @@ export default function Membership({content}: Readonly<Props>) {
             ].map((key) => (
               <li
                 key={key}
-                className="flex items-center gap-4 py-4 font-shippori text-[15px] lg:text-[16px] text-white/75 leading-[1.7] break-keep-all first:pt-0 last:pb-0"
+                className="flex items-center gap-4 py-4 font-shippori text-[15px] lg:text-[16px] text-white/75 leading-[1.7] first:pt-0 last:pb-0"
               >
                 <span
                   aria-hidden="true"
@@ -986,7 +986,7 @@ export default function Membership({content}: Readonly<Props>) {
             </span>
             <span className="text-gold block">{t('ready_to_join_line_2')}</span>
           </h2>
-          <p className="mt-6 font-shippori text-[16px] lg:text-[17px] text-white/65 leading-[1.8] max-w-[520px] mx-auto break-keep-all">
+          <p className="mt-6 font-shippori text-[16px] lg:text-[17px] text-white/65 leading-[1.8] max-w-[520px] mx-auto">
             {t('ready_to_join_desc')}
           </p>
           <p className="mt-10 mb-4 font-poppins text-[11px] tracking-[0.25em] uppercase text-white/35">

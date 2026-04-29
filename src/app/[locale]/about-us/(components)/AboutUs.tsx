@@ -180,18 +180,18 @@ export default function AboutUs({content}: Props) {
       <div className="relative bg-[#F6F6F6]">
         <div className="py-16 md:py-24 px-4 sm:px-8 max-w-7xl mx-auto">
           {/* About Us Title */}
-          <h2 className="text-5xl md:text-6xl lg:text-[64px] font-bold font-playfair text-black text-center mb-16 md:mb-24">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-bold font-playfair text-black text-center mb-10 md:mb-24">
             {aboutUsTitle}
           </h2>
 
           {/* At Daimasu Section */}
           <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
             {/* Left: Text */}
-            <div className="lg:w-1/2">
-              <h3 className="text-3xl md:text-4xl lg:text-[48px] font-bold font-playfair text-black leading-tight mb-6">
+            <div className="lg:w-1/2 text-center lg:text-left">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-[48px] font-bold font-playfair text-black leading-snug lg:leading-tight mb-4 md:mb-6">
                 {atDaimasuTitle}
               </h3>
-              <p className="text-lg md:text-xl font-poppins text-black leading-relaxed">
+              <p className="text-base md:text-xl font-poppins text-black leading-relaxed">
                 {atDaimasuDescription}
               </p>
             </div>
@@ -229,11 +229,11 @@ export default function AboutUs({content}: Props) {
         <div className="relative py-16 md:py-24 px-4 sm:px-8 max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row-reverse items-center gap-8 lg:gap-16">
             {/* Right: Text (reversed order on desktop) */}
-            <div className="lg:w-1/2">
-              <h3 className="text-3xl md:text-4xl lg:text-[48px] font-bold font-playfair text-black leading-tight mb-6">
+            <div className="lg:w-1/2 text-center lg:text-left">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-[48px] font-bold font-playfair text-black leading-snug lg:leading-tight mb-4 md:mb-6">
                 {craftedTitle}
               </h3>
-              <p className="text-lg md:text-xl font-poppins text-black leading-relaxed">
+              <p className="text-base md:text-xl font-poppins text-black leading-relaxed">
                 {craftedDescription}
               </p>
             </div>
@@ -272,11 +272,11 @@ export default function AboutUs({content}: Props) {
         <div className="absolute inset-0 flex items-center">
           <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 flex justify-between items-center">
             {/* Center-Right Content */}
-            <div className="ml-auto max-w-md text-white">
-              <h3 className="text-3xl md:text-4xl lg:text-[48px] font-bold font-playfair leading-tight mb-6">
+            <div className="mx-auto lg:ml-auto lg:mr-0 max-w-md text-center lg:text-left text-white">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-[48px] font-bold font-playfair leading-snug lg:leading-tight mb-4 md:mb-6">
                 {moreThanMealTitle}
               </h3>
-              <p className="text-lg md:text-xl font-poppins leading-relaxed">
+              <p className="text-base md:text-xl font-poppins leading-relaxed">
                 {moreThanMealDescription}
               </p>
             </div>
