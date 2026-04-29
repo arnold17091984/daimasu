@@ -1,8 +1,8 @@
 {
   "hero": {
-    "subtitle": "Struggling to find truly\nAuthentic Japanese dining?",
-    "tagline": "Japan, served at the table.",
-    "description": "Premium seafood, wagyu, and artisanal ingredients are flown from Japan and prepared with precision and respect for tradition, creating an unmistakably Japanese dining experience.",
+    "subtitle": "Japan, at your table.",
+    "tagline": "Tatler Best Restaurants Philippines.",
+    "description": "Seafood, wagyu, and seasonal produce flown from Japan, prepared with the precision and restraint of authentic Japanese cuisine — an intimate counter for those who recognise the difference.",
     "buttonText": "Book a Table",
     "buttonLink": "https://m.me/DaimasuMakati",
     "japaneseText1": "本物の日本の味。",
@@ -45,8 +45,8 @@
     "buttonLink": "#"
   },
   "grabFood": {
-    "title": "We're now on",
-    "buttonText": "Order Now",
+    "title": "Daimasu Delivery",
+    "buttonText": "Order on GrabFood",
     "buttonLink": "https://r.grab.com/g/6-20260123_182251_91230EF135F3447384D50AE00F339011_MEXMPS-2-C7VDEBXXTJD1G2"
   },
   "location": {

@@ -1,8 +1,8 @@
 {
   "hero": {
     "title": "The Art of Omotenashi",
-    "subtitle": "Refined Cuisine, Attentive Service, Thoughtfully Tailored for You",
-    "description": "Guided by the Japanese spirit of omotenashi, we strive to understand our guests and deliver heartfelt cuisine and service that leave them genuinely satisfied.",
+    "subtitle": "An intimate Japanese house in Makati.",
+    "description": "Tatler Best Restaurants Philippines. A small counter, attentive service, and an evening composed around the day's finest ingredients flown from Japan.",
     "buttonText": "Book a table",
     "buttonLink": "https://m.me/daimasujapaneserestaurant",
     "japaneseText1": "細やかな心配り、",
@@ -12,16 +12,16 @@
   },
   "aboutUsTitle": "About Us",
   "atDaimasu": {
-    "title": "At Daimasu, we bring the heart of Japan to your table.",
-    "description": "Our name, meaning \"Great Celebration,\" reflects our passion for crafting unforgettable dining experiences rooted in authentic Japanese culinary tradition. Whether you're a seasoned sushi lover, a ramen enthusiast, or a curious first-time guest, Daimasu is your home for genuine, handcrafted Japanese cuisine."
+    "title": "Japan, brought quietly to your table.",
+    "description": "Daimasu — \"great celebration\" — is an intimate Japanese house in Makati. Each evening, the chef composes a course around the day's finest seafood and produce flown from Japan. The room seats few; every dish is built for the guest in front of it."
   },
   "craftedWithPrecision": {
-    "title": "Crafted with Precision",
-    "description": "Every dish at Daimasu is thoughtfully prepared using the freshest ingredients, traditional techniques, and a deep respect for flavor. From delicately sliced sashimi and perfectly grilled yakitori to comforting bowls of ramen and artfully arranged bento sets, our menu celebrates the diversity and elegance of Japanese food."
+    "title": "Crafted with Restraint",
+    "description": "The kitchen works in the discipline of traditional Japanese cooking: knife technique honed over years, a curated sake list selected by hand, and a respect for season that quietly determines the menu. Nothing on the counter exists without intention."
   },
   "moreThanAMeal": {
-    "title": "More Than a Meal",
-    "description": "At Daimasu, we believe in omotenashi —the Japanese spirit of heartfelt service. Whether you're here for a quiet dinner, a special celebration, or a quick lunch escape, we strive to make each visit feel personal and memorable.",
+    "title": "An Invitation, Not a Reservation",
+    "description": "Omotenashi is not a service standard — it is the assumption that the meal began the moment you decided to come. Our team learns your name, your seat, your pace. The evening unfolds at the rhythm of the room, never the rhythm of a turn.",
     "japaneseText1": "静かな夕食や特別な祝いごと、気軽なランチでも、",
     "japaneseText2": "一人ひとりに寄り添い、心に残るひとときを。",
     "japaneseText3": "大枡では、日本の心「おもてなし」を大切に。",
