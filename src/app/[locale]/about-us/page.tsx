@@ -1,6 +1,8 @@
 import type {Metadata} from 'next';
 import type {Locale} from 'next-intl';
 import {getTranslations} from 'next-intl/server';
+import {host} from '@/config';
+import {buildAlternates} from '@/lib/seo';
 import {getAboutUsContent} from '@/lib/keystatic';
 import AboutUs from './(components)/AboutUs';
 
@@ -13,11 +15,12 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
   const t = await getTranslations({locale});
   const title = t('seo_about_title');
   const description = t('seo_about_description');
+  const url = `${host}/${locale}/about-us`;
   return {
     title,
     description,
-    alternates: {canonical: `/${locale}/about-us`},
-    openGraph: {title, description, url: `/${locale}/about-us`},
+    alternates: buildAlternates(locale, '/about-us'),
+    openGraph: {title, description, url},
     twitter: {card: 'summary_large_image', title, description}
   };
 }

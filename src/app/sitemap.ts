@@ -18,7 +18,7 @@ type Href = Parameters<typeof getPathname>[0]['href'];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
-  return ROUTES.flatMap((route) =>
+  const localised = ROUTES.flatMap((route) =>
     routing.locales.map((locale) => ({
       url: getUrl(route.href as Href, locale),
       lastModified,
@@ -31,6 +31,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       }
     }))
   );
+  // Surface the printed PDF so Google can crawl/refresh it. The PDF is
+  // locale-agnostic (one designed artefact), so list it once.
+  const menuPdf = {
+    url: `${host}/menu/daimasu-grand-menu.pdf`,
+    lastModified,
+    changeFrequency: 'monthly' as const,
+    priority: 0.6
+  };
+  return [...localised, menuPdf];
 }
 
 function getUrl(href: Href, locale: Locale) {

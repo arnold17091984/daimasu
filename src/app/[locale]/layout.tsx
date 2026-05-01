@@ -6,6 +6,7 @@ import {clsx} from 'clsx';
 import type {Metadata} from 'next';
 import {routing} from '@/i18n/routing';
 import {host} from '@/config';
+import {buildAlternates} from '@/lib/seo';
 import './styles.css';
 import {cormorant, inter, shippori} from '@/lib/fonts';
 import NextTopLoader from 'nextjs-toploader';
@@ -59,12 +60,7 @@ export async function generateMetadata(
     authors: [{name: siteName, url: host}],
     creator: siteName,
     publisher: siteName,
-    alternates: {
-      canonical: localePath,
-      languages: Object.fromEntries(
-        routing.locales.map((loc) => [loc, `/${loc}`])
-      )
-    },
+    alternates: buildAlternates(locale, '/'),
     openGraph: {
       type: 'website',
       url: `${host}${localePath}`,
@@ -174,22 +170,22 @@ export default async function LocaleLayout({children, params}: Props) {
     ],
     award: 'Tatler Dining Philippines 2024',
     acceptsReservations: 'True',
-    inLanguage: routing.locales
+    inLanguage: routing.locales,
+    hasMenu: {
+      '@type': 'Menu',
+      '@id': `${host}/${locale}/our-menu#menu`,
+      url: `${host}/${locale}/our-menu`
+    }
   };
 
   return (
     <html className="h-full" lang={locale}>
       <head>
-        {/* hreflang for sister-locale crawl. Next.js metadata.alternates.languages emits <link rel="alternate"> automatically; this duplicates with absolute URLs for crawlers that prefer them. */}
-        {routing.locales.map((alt) => (
-          <link
-            key={alt}
-            rel="alternate"
-            hrefLang={alt}
-            href={`${host}/${alt}`}
-          />
-        ))}
-        <link rel="alternate" hrefLang="x-default" href={`${host}/`} />
+        {/* Per-page hreflang is emitted by each route's
+            metadata.alternates.languages (via @/lib/seo buildAlternates).
+            Pre-this-fix the layout hardcoded homepage hreflangs into every
+            page's <head>, telling Google "the JA equivalent of /en/our-menu
+            is /ja" — wrong. Don't reintroduce static hreflang here. */}
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger

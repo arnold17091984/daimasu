@@ -19,9 +19,11 @@ function OurMenuHeader() {
       <div className="absolute inset-0 bg-black/45 sm:bg-black/30" />
       <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4 sm:px-8 pt-24 sm:pt-12 pb-6">
         <div className="max-w-3xl w-full">
-          <h1 className="text-[36px] sm:text-[64px] md:text-[80px] leading-none font-extrabold font-shippori text-white">
+          {/* Decorative page banner — demoted to <h2> so the keyword-rich
+              MenuView hero ("大枡 — 今月のお品書き") owns the single <h1>. */}
+          <h2 className="text-[36px] sm:text-[64px] md:text-[80px] leading-none font-extrabold font-shippori text-white">
             {t('our_menu')}
-          </h1>
+          </h2>
           <p className="text-[13px] sm:text-[16px] md:text-[20px] leading-[150%] font-medium font-mplus mt-4 text-white/90">
             {t('enjoy_our_array_of')}
           </p>
