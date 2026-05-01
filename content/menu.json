@@ -1,0 +1,425 @@
+{
+  "pdf": "/menu/daimasu-grand-menu.pdf",
+  "categories": [
+    {
+      "id": "appetizer",
+      "kanji": "前菜",
+      "en": "Appetizer",
+      "items": [
+        {
+          "jp": "酢盛",
+          "en": "Vinegared dish",
+          "price": 400,
+          "description": null
+        },
+        {
+          "jp": "鰻ざく",
+          "en": "Vinegared UNAGI",
+          "price": 700,
+          "description": null
+        },
+        {
+          "jp": "鯖の胡麻和え",
+          "en": "Chopped fish with sesame sauce",
+          "price": 400,
+          "description": null
+        }
+      ]
+    },
+    {
+      "id": "sashimi",
+      "kanji": "刺身",
+      "en": "Sashimi",
+      "items": [
+        {
+          "jp": "刺身盛合せ 七点",
+          "en": "Assorted sashimi 7 points",
+          "price": 4800,
+          "description": null
+        },
+        {
+          "jp": "刺身盛合せ 五点",
+          "en": "Assorted sashimi 5 points",
+          "price": 3400,
+          "description": null
+        },
+        {
+          "jp": "刺身盛合せ 三点",
+          "en": "Assorted sashimi 3 points",
+          "price": 2500,
+          "description": null
+        }
+      ]
+    },
+    {
+      "id": "grilled",
+      "kanji": "焼物",
+      "en": "Grilled",
+      "items": [
+        {
+          "jp": "銀西京焼",
+          "en": "GINDARA SAIKYO YAKI",
+          "price": 900,
+          "description": "Marinated fish in seasoned sweet miso, Saikyo Yaki Miso. Marinated, and grilled perfectly."
+        },
+        {
+          "jp": "鰤幽庵焼き",
+          "en": "BURI YUANN YAKI",
+          "price": 850,
+          "description": "This dish features yellowtail marinated in a mixture of soy sauce, sake, mirin and citrus fruit, then grilled to perfection."
+        },
+        {
+          "jp": "鰻蒲焼き一本",
+          "en": "UNAGI KABAYAKI",
+          "price": 4000,
+          "description": "Deboned and filleted fresh water eel, grilled with a sweet kabayaki sauce."
+        }
+      ]
+    },
+    {
+      "id": "simmered",
+      "kanji": "煮物",
+      "en": "Simmered",
+      "items": [
+        {
+          "jp": "大根煮物",
+          "en": "Boiled radish",
+          "price": 500,
+          "description": null
+        },
+        {
+          "jp": "あら煮",
+          "en": "Simmered head",
+          "price": {
+            "value": 1000,
+            "suffix": "~"
+          },
+          "description": null
+        },
+        {
+          "jp": "羽太姿煮",
+          "en": "Simmered whole Hata fish",
+          "price": 2500,
+          "description": null
+        }
+      ]
+    },
+    {
+      "id": "deep_fried",
+      "kanji": "揚物",
+      "en": "Deep-fried",
+      "items": [
+        {
+          "jp": "魚竜田揚げ",
+          "en": "TATUTA-AGE / Deep-Fried Fish",
+          "price": 850,
+          "description": null
+        },
+        {
+          "jp": "天ぷら盛合せ",
+          "en": "Assorted tempura",
+          "price": 1000,
+          "description": "天ぷら盛合せ / Assorted deep-fried dish using tempura-coating technique"
+        }
+      ]
+    },
+    {
+      "id": "steamed",
+      "kanji": "蒸物",
+      "en": "Steamed",
+      "items": [
+        {
+          "jp": "土瓶蒸し",
+          "en": "DOBIN-MUSHI",
+          "price": 600,
+          "description": "土瓶蒸し / Japanese seafood soup, steamed and served in a dobin tea pot with shrimp, chicken, and ginkgo"
+        },
+        {
+          "jp": "茶碗蒸し",
+          "en": "CHAWAN-MUSHI",
+          "price": 400,
+          "description": "茶碗蒸し / Egg custard dish popular in Japan; seasoned in a broth"
+        }
+      ]
+    },
+    {
+      "id": "meat",
+      "kanji": "肉料理",
+      "en": "Meat",
+      "items": [
+        {
+          "jp": "照り焼きチキン",
+          "en": "Chicken Teriyaki",
+          "price": 650,
+          "description": null
+        },
+        {
+          "jp": "ローストビーフ",
+          "en": "Roast Beef",
+          "price": 1700,
+          "description": null
+        },
+        {
+          "jp": "和牛ステーキ 160g",
+          "en": "Wagyu steak",
+          "price": 2700,
+          "description": "和牛ステーキ / Delicious, tender and juicy wagyu steak served"
+        }
+      ]
+    },
+    {
+      "id": "other",
+      "kanji": "その他",
+      "en": "Other",
+      "items": [
+        {
+          "jp": "温野菜盛合せ",
+          "en": "Assorted hot vegetables",
+          "price": 550,
+          "description": null
+        },
+        {
+          "jp": "鰻巻き",
+          "en": "UNAGI roll",
+          "price": 700,
+          "description": null
+        },
+        {
+          "jp": "だし巻き卵",
+          "en": "DASHIMAKI TAMAGO",
+          "price": 350,
+          "description": null
+        }
+      ]
+    },
+    {
+      "id": "rice",
+      "kanji": "飯物",
+      "en": "Rice",
+      "items": [
+        {
+          "jp": "寿司「福」特上ネタ十貫",
+          "en": "Sushi [FUKU] Tokujo-Neta 10pcs",
+          "price": 3500,
+          "description": "寿司「福」上ネタ十貫 / Sushi [FUKU] 10pcs"
+        },
+        {
+          "jp": "寿司「善」上ネタ八貫",
+          "en": "Sushi [ZEN] Jyo-Neta 8pcs",
+          "price": 2800,
+          "description": null
+        },
+        {
+          "jp": "焼きおにぎり茶漬け",
+          "en": "Grilled rice balls CHAZUKE",
+          "price": 450,
+          "description": null
+        },
+        {
+          "jp": "海鮮丼",
+          "en": "KAISEN-DON",
+          "price": 1700,
+          "description": null
+        },
+        {
+          "jp": "鳥五目釜飯",
+          "en": "TORI GOMOKU-KAMAMESHI",
+          "price": 750,
+          "description": null
+        },
+        {
+          "jp": "海鮮釜飯",
+          "en": "KAISEN Kamameshi",
+          "price": 1200,
+          "description": null
+        },
+        {
+          "jp": "こしひかり白米飯",
+          "en": "KOSHIHIKARI HAKUMAI / Plain rice",
+          "price": 250,
+          "description": null
+        }
+      ]
+    },
+    {
+      "id": "soup",
+      "kanji": "汁物",
+      "en": "Soup",
+      "items": [
+        {
+          "jp": "吸い物",
+          "en": "SUIMONO",
+          "price": 270,
+          "description": null
+        },
+        {
+          "jp": "赤出汁",
+          "en": "AKADASHI / Red miso soup",
+          "price": 330,
+          "description": null
+        }
+      ]
+    },
+    {
+      "id": "dessert",
+      "kanji": "甘味",
+      "en": "Dessert",
+      "items": [
+        {
+          "jp": "アイス",
+          "en": "Ice cream",
+          "price": 200,
+          "description": null
+        },
+        {
+          "jp": "抹茶プリン",
+          "en": "Green tea pudding",
+          "price": 300,
+          "description": null
+        },
+        {
+          "jp": "フルーツ盛合わせ",
+          "en": "Assorted fruits",
+          "price": 300,
+          "description": "フルーツ盛合わせ / Assorted fruits; fruits vary depending on the season"
+        }
+      ]
+    }
+  ],
+  "kaiseki": [
+    {
+      "id": "kaede",
+      "kanji": "楓",
+      "romaji": "KAEDE KAISEKI",
+      "price": 8000,
+      "composition": [
+        {
+          "label_jp": "先付",
+          "jp": "季節の二点盛",
+          "en": "Seasonal two pieces assortment (Two of our Chef's Seasonal Selections)"
+        },
+        {
+          "label_jp": "椀物",
+          "jp": "澄まし仕立て",
+          "en": "Clear soup"
+        },
+        {
+          "label_jp": "向付",
+          "jp": "日本からの魚三点盛",
+          "en": "Three pieces fish from Japan"
+        },
+        {
+          "label_jp": "焼物",
+          "jp": "日本産和牛",
+          "en": "Japanese beef"
+        },
+        {
+          "label_jp": "煮物",
+          "jp": "魚介の炊合せ",
+          "en": "Cooked seafood"
+        },
+        {
+          "label_jp": "飯物",
+          "jp": "季節のご飯",
+          "en": "Seasonal rice"
+        },
+        {
+          "label_jp": "",
+          "jp": "香の物",
+          "en": "Pickles"
+        },
+        {
+          "label_jp": "",
+          "jp": "赤だし",
+          "en": "Red miso soup"
+        },
+        {
+          "label_jp": "甘味",
+          "jp": "季節のフルーツ",
+          "en": "Seasonal fruit"
+        }
+      ]
+    },
+    {
+      "id": "sakura",
+      "kanji": "桜",
+      "romaji": "SAKURA KAISEKI",
+      "price": 12000,
+      "composition": [
+        {
+          "label_jp": "先付",
+          "jp": "季節の三点盛",
+          "en": "Seasonal three pieces assortment (Three of our Chef's Seasonal Selections)"
+        },
+        {
+          "label_jp": "椀物",
+          "jp": "澄まし仕立て",
+          "en": "Clear soup"
+        },
+        {
+          "label_jp": "向付",
+          "jp": "日本からの魚三点盛",
+          "en": "Three pieces fish from Japan"
+        },
+        {
+          "label_jp": "焼物",
+          "jp": "季節の海鮮焼、和牛ステーキ",
+          "en": "Seasonal seafood grill or WAGYU steak"
+        },
+        {
+          "label_jp": "揚物",
+          "jp": "海鮮かわり揚げ",
+          "en": "Fried seafood"
+        },
+        {
+          "label_jp": "煮物",
+          "jp": "魚介の炊合せ",
+          "en": "Cooked seafood"
+        },
+        {
+          "label_jp": "鍋物",
+          "jp": "シェフこだわりの紙鍋",
+          "en": "Chef's favorite paper pot"
+        },
+        {
+          "label_jp": "飯物",
+          "jp": "季節のご飯",
+          "en": "Seasonal rice"
+        },
+        {
+          "label_jp": "",
+          "jp": "香の物",
+          "en": "Pickles"
+        },
+        {
+          "label_jp": "",
+          "jp": "赤だし",
+          "en": "Red miso soup"
+        },
+        {
+          "label_jp": "甘味",
+          "jp": "季節のフルーツ",
+          "en": "Seasonal fruit"
+        }
+      ]
+    },
+    {
+      "id": "sushi_jo",
+      "kanji": "寿司会席 上",
+      "romaji": "Sushi Kaiseki",
+      "price": 8000,
+      "composition": null
+    },
+    {
+      "id": "sushi_tokujo",
+      "kanji": "寿司会席 特上",
+      "romaji": "Sushi Kaiseki Special",
+      "price": 10000,
+      "composition": null
+    }
+  ],
+  "reservation_note": {
+    "jp": "※会席料理は事前予約が必要です。2日前までにご予約ください。食材は季節によって異なります。写真は参考です。",
+    "en": "*Kaiseki courses require reservations at least 2 days in advance. Ingredients may vary by season and market availability; photos are for reference."
+  }
+}
