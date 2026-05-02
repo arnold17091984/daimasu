@@ -1,6 +1,8 @@
 import type {Metadata} from 'next';
 import {Locale} from 'next-intl';
 import {getTranslations, setRequestLocale} from 'next-intl/server';
+import {host} from '@/config';
+import {buildAlternates} from '@/lib/seo';
 import {getHomepageContent} from '@/lib/keystatic';
 import HeroSection from './(home)/(components)/HeroSection';
 import TatlerAwardsSection from './(home)/(components)/TatlerAwardsSection';
@@ -18,11 +20,16 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
   const t = await getTranslations({locale});
   const title = t('seo_home_title');
   const description = t('seo_home_description');
+  const url = `${host}/${locale}`;
   return {
     title,
     description,
-    alternates: {canonical: `/${locale}`},
-    openGraph: {title, description, url: `/${locale}`},
+    // Codex review M1 fix: this previously set `alternates` to canonical only,
+    // which silently overrode the layout-level languages map and left the home
+    // page without ja↔en hreflang tags. buildAlternates emits the correct
+    // canonical + languages + x-default triplet.
+    alternates: buildAlternates(locale, '/'),
+    openGraph: {title, description, url},
     twitter: {card: 'summary_large_image', title, description}
   };
 }

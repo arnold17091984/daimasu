@@ -87,7 +87,10 @@ function MenuHero({pdfHref, t}: {pdfHref: string; t: Translator}) {
   return (
     <section className="bg-washi-50 text-ink-900 py-section-y-sm md:py-section-y px-4">
       <div className="max-w-3xl mx-auto text-center">
-        <p className="font-poppins text-[11px] tracking-[0.3em] uppercase text-gold-500 mb-6">
+        {/* Codex review M3 fix: gold-500 on washi-50 = 2.43:1, fails WCAG AA
+            for 11px text. vermillion (shū-iro) on washi-50 = 6.23:1 ✅
+            and preserves the Japanese-restaurant red-accent identity. */}
+        <p className="font-poppins text-[11px] tracking-[0.3em] uppercase text-vermillion mb-6">
           {t('menu_hero_eyebrow')}
         </p>
         <h1
@@ -128,7 +131,10 @@ function SectionHeading({
   sub: string;
   tone: 'light' | 'dark';
 }) {
-  const eyebrowColor = tone === 'dark' ? 'text-gold-500' : 'text-gold-500';
+  // Codex review M3 fix: gold-500 only has enough contrast (≥4.5:1) on
+  // ink-900. On washi-50 it's 2.43:1 — well below WCAG AA — so swap to
+  // vermillion (6.23:1) for the light-tone variant.
+  const eyebrowColor = tone === 'dark' ? 'text-gold-500' : 'text-vermillion';
   return (
     <div className="text-center">
       <p
@@ -167,7 +173,8 @@ function CategoryBlock({
         >
           {category.kanji}
         </h3>
-        <span className="font-poppins text-[11px] tracking-[0.3em] uppercase text-gold-500">
+        {/* Codex review M3 fix: same light-surface contrast issue. */}
+        <span className="font-poppins text-[11px] tracking-[0.3em] uppercase text-vermillion">
           {category.en}
         </span>
       </div>
